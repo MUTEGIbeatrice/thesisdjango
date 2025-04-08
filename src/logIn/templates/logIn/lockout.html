@@ -1,0 +1,189 @@
+<!--MAIN TEMPLATE HTML AND CSS TO MINIMIZE CODE REDUNDANCY WHEN CREATING OTHER PAGES-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>System Lockout Page</title>
+
+  <!-- Stylesheet CSS -->
+  <style>
+    *,
+    *:before,
+    *:after {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #080710;
+      overflow-x: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Background shapes */
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .shape:nth-child(1) {
+      background: linear-gradient(45deg, #ff512f, #f09819);
+      width: 350px;
+      height: 350px;
+      top: -150px;
+      left: -200px;
+    }
+
+    .shape:nth-child(2) {
+      background: linear-gradient(45deg, #89216b, #da4453);
+      width: 300px;
+      height: 300px;
+      top: 20%;
+      left: 10%;
+    }
+
+    .shape:nth-child(3) {
+      background: linear-gradient(45deg, #ff0099, #493240);
+      width: 180px;
+      height: 180px;
+      bottom: 10%;
+      right: 5%;
+    }
+
+    .shape:nth-child(4) {
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      width: 220px;
+      height: 220px;
+      top: 60%;
+      right: 30%;
+    }
+
+    /* Header styling */
+    .majorheader {
+      text-align: center;
+      padding: 20px;
+      color:  rgb(193, 195, 196);
+    }
+
+    .majorheader h2 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    /* Container */
+    .container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 12px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  width: 90%;
+  max-width: 1000px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* Space out content vertically */
+  align-items: center;
+}
+
+.container h3 {
+  color:  #f0eaea;
+  font-size: 32px;
+  margin-bottom: 40px; /* Added margin for spacing */
+  width: 100%;
+}
+
+.container p {
+  color:  #f0eaea;
+  font-size: 18px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.button {
+  padding: 12px 30px;
+  background:rgba(164, 170, 172, 0.464);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: default;
+  transition: 0.3s;
+  width: fit-content;
+  margin-top: 20px; /* Adjust spacing from above text */
+  display: block;
+  outline: none; 
+}
+
+
+
+.button:hover {
+  background: hsla(180, 35%, 76%, 0.855);
+}
+
+    /* Footer */
+    .majorfooter {
+      text-align: center;
+      color: #b5b5b5;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Background shapes -->
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  {% include 'logIn/messages.html' %} <!-- INHERITANCE OF THE PAGE CONTENT -->
+
+  <!-- Main container -->
+  <div class="container">
+    <h3>ACCOUNT LOCKED</h3> 
+    <p>Your account has been locked due to multiple failed login attempts.</p>
+    <p>Please try again later or contact support.</p>
+    
+      <a href="{% url 'login' %}">
+        <button type="button" class="button">Back to Log In</button>
+    </a>    
+    <a href="{% url 'contactsupport' %}">
+      <button type="button" class="button">Contact Support</button>
+  </a>
+  </form>
+  </div>
+
+  <!-- Footer -->
+  <div class="majorfooter">
+    <p>&copy; <script>document.write(new Date().getFullYear())</script>. All rights reserved.</p>
+  </div>
+
+</body>
+
+</html>
+

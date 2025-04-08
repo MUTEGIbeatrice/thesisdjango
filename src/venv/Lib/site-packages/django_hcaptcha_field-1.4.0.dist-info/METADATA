@@ -1,0 +1,127 @@
+Metadata-Version: 2.1
+Name: django-hcaptcha-field
+Version: 1.4.0
+Summary: Django hCaptcha Field provides a simple way to protect your Django forms using hCaptcha.
+Home-page: https://github.com/tiesjan/django-hcaptcha-field
+Author: Ties Jan Hefting
+Author-email: hello@tiesjan.com
+License: BSD
+Project-URL: Bugs, https://github.com/tiesjan/django-hcaptcha-field/issues
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.0
+Classifier: Framework :: Django :: 4.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Internet :: WWW/HTTP
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django (>=2.2)
+
+# Django hCaptcha Field
+
+[![Python unit tests](https://github.com/tiesjan/django-hcaptcha-field/actions/workflows/run_python_unit_tests.yml/badge.svg)](https://github.com/tiesjan/django-hcaptcha-field/actions/workflows/run_python_unit_tests.yml)
+[![Linters](https://github.com/tiesjan/django-hcaptcha-field/actions/workflows/run_linters.yml/badge.svg)](https://github.com/tiesjan/django-hcaptcha-field/actions/workflows/run_linters.yml)
+
+Django hCaptcha Field provides a simple way to protect your Django forms using
+[hCaptcha](https://www.hcaptcha.com/).
+
+_This is a fork of [`django-hcaptcha`](https://github.com/AndrejZbin/django-hcaptcha)_.
+
+## Installation
+1. Install using pip:
+
+    ```shell
+    $ pip install django-hcaptcha-field
+    ```
+
+2. Add to `INSTALLED_APPS`:
+
+    ```python
+    INSTALLED_APPS = [
+        # ...
+        'hcaptcha_field'
+    ]
+    ```
+
+## Configuration
+For development purposes no further configuration is required. By default,
+Django hCaptcha Field will use
+[test keys](https://docs.hcaptcha.com/#integration-testing-test-keys).
+
+For production, you'll need to obtain your hCaptcha site key and secret key and
+add them to you settings:
+
+  ```python
+  HCAPTCHA_SITEKEY = '<your sitekey>'
+  HCAPTCHA_SECRET = '<your secret key>'
+  ```
+
+You can also configure your hCaptcha widget globally
+([see all options](https://docs.hcaptcha.com/configuration)):
+
+  ```python
+  HCAPTCHA_DEFAULT_CONFIG = {
+      'onload': 'name_of_js_function',
+      'render': 'explicit',
+      'theme': 'dark',  # do not use data- prefix
+      'size': 'compact',  # do not use data- prefix
+      # ...
+  }
+  ```
+
+If you need to, you can also override default hCaptcha endpoints:
+
+  ```python
+  HCAPTCHA_JS_API_URL = 'https://hcaptcha.com/1/api.js'
+  HCAPTCHA_VERIFY_URL = 'https://hcaptcha.com/siteverify'
+  ```
+
+Use proxies:
+
+  ```python
+  HCAPTCHA_PROXIES = {
+     'http': 'http://127.0.0.1:8000',
+  }
+  ```
+
+Change default verification timeout:
+
+  ```python
+  HCAPTCHA_TIMEOUT = 5
+  ```
+
+## Usage
+Simply add hCaptchaField to your forms:
+
+  ```python
+  from hcaptcha_field import hCaptchaField
+
+  class Form(forms.Form):
+      hcaptcha = hCaptchaField()
+  ```
+
+You can override the sitekey and other default configuration by passing
+additional arguments:
+
+  ```python
+  from hcaptcha_field import hCaptchaField
+
+  class Form(forms.Form):
+      hcaptcha = hCaptchaField(sitekey='...', theme='dark', size='compact')
+  ```
+
+## License
+The scripts and documentation in this project are released under the BSD-3-Clause License.

@@ -1,0 +1,286 @@
+<!--MAIN TEMPLATE HTML AND CSS TO MINIMIZE CODE REDUNDANCY WHEN CREATING OTHER PAGES-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Systems Sign Up Page</title>
+
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+
+
+    <style media="screen">
+      *, *:before, *:after {
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+      }
+      body {
+          background-color: #080710;
+          overflow-x: hidden;
+          font-family: 'Poppins', sans-serif;
+      }
+      .background {
+          position: absolute;
+          width: 100%;
+          height: 100vh;
+          z-index: -1;
+      }
+      .shape {
+          position: absolute;
+          border-radius: 50%;
+          opacity: 0.6;
+      }
+      .shape:first-child {
+          background: linear-gradient(rgb(23, 42, 44), rgb(4, 224, 244));
+          width: 250px;
+          height: 250px;
+          left: -120px;
+          top: -120px;
+      }
+      .shape:nth-child(2) {
+          background: linear-gradient(to right, #ff512f, #f09819);
+          width: 200px;
+          height: 200px;
+          right: -100px;
+          bottom: -140px;
+      }
+      .shape:nth-child(3) {
+    background: linear-gradient(to right, #89216b, #da4453);
+    width: 180px;
+    height: 180px;
+    top: 40%;
+    left: 10%;
+    transform: rotate(30deg);
+}
+
+.shape:nth-child(4) {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    width: 220px;
+    height: 220px;
+    top: 60%;
+    right: 15%;
+}
+
+.shape:nth-child(5) {
+    background: linear-gradient(to right, #ff0099, #493240);
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    bottom: 20%;
+    left: 20%;
+    transform: rotate(45deg);
+}
+
+.shape:nth-child(6) {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    top: 15%;
+    right: 25%;
+    transform: rotate(-30deg);
+}
+
+/* Glassmorphism form */
+      form {
+          height: auto;
+          width: 700px;
+          background-color: rgba(255,255,255,0.13);
+          position: absolute;
+          transform: translate(-50%,-50%);
+          top: 50%;
+          left: 50%;
+          border-radius: 10px;
+          backdrop-filter: blur(10px);
+          border: 2px solid rgba(255,255,255,0.1);
+          box-shadow: 0 0 40px rgba(8,7,16,0.6);
+          padding: 40px 30px;
+          text-align: center;
+      }
+      form h1 {
+          font-size: 32px;
+          font-weight: 600;
+          color: rgb(193, 195, 196);         
+      }
+      form h3 {
+          font-size: 24px;
+          font-weight: 500;
+          color: #f0eaea;
+          margin-bottom: 20px;
+      }
+
+      form h4 {
+          font-size: 18px;
+          font-weight: 500;
+          color: #f0eaea;
+          margin-top: 20px;
+          margin-bottom: -20px;
+      }
+
+      label {
+          display: block;
+          margin-top: 15px;
+          font-size: 14px;
+          font-weight: 500;
+          color: #f0ebeb;
+          text-align: left;
+      }
+      .input-group {
+          display: flex;
+          justify-content: space-between;
+          gap: 30px;
+          margin-top: 15px;
+         
+      }
+
+      .input-group div {
+          width: 48%;
+      }
+      input {
+          display: block;
+          height: 50px;
+          width: 100%;
+          background-color: rgba(255,255,255,0.07);
+          border-radius: 5px;
+          padding: 0 10px;
+          margin-top: 5px;
+          font-size: 14px;
+          color: #ffffff;
+        
+      }
+      ::placeholder {
+          color: #e5e5e5;
+      }
+      button {
+          margin-top: 30px;
+          width: 100%;
+          background-color: #ffffff;
+          color: #080710;
+          padding: 12px 0;
+          font-size: 16px;
+          font-weight: 600;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+      button:hover {
+          background: #ffffff9d;
+      }
+      p {
+          margin-top: 15px;
+          color: #e5e5e5;
+          font-size: 14px;
+      }
+      a {
+          color: #4ea3f2;
+          text-decoration: none;
+      }
+      a:hover {
+          text-decoration: underline;
+      }
+
+      .captcha-wrapper {
+    text-align: center; /* Center the captcha */
+    margin-top: 30px;
+}
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+    </style>
+</head>
+
+<!--HTML Code-->
+
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    {% include 'logIn/messages.html' %} <!-- INHERITANCE OF THE PAGE CONTENT -->
+    <div class="form">
+        <form id="signup-form" action="{% url 'signup' %}" method="POST"> 
+
+            {% csrf_token %}  <!-- csrf to secure the data-->
+
+            <h1>Sign Up</h1>
+            <h3>Create an Account</h3>
+            
+            <div class="input-group">
+                <div>
+                    <label for="first_name">First Name</label>
+                    <input type="text" placeholder="Enter your first name" name="first_name" required>
+                    {% if form.first_name.errors %}
+                        <span class="error">{{ form.first_name.errors.0 }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="last_name">Last Name</label>
+                    <input type="text" placeholder="Enter your last name" name="last_name" required>
+                    {% if form.last_name.errors %}
+                        <span class="error">{{ form.last_name.errors.0 }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <div>
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="Choose a username" name="username" required>
+                    {% if form.username.errors %}
+                        <span class="error">{{ form.username.errors.0 }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Enter your email" name="email" required>
+                    {% if form.email.errors %}
+                        <span class="error">{{ form.email.errors.0 }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Create a password" name="password1" autocomplete="off" required>
+                    {% if form.password1.errors %}
+                        <span class="error">{{ form.password1.errors.0 }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="password">Confirm Password</label>
+                    <input type="password" placeholder="Confirm password" name="password2" autocomplete="off" required>
+                    {% if form.password2.errors %}
+                        <span class="error">{{ form.password2.errors.0 }}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Render the reCAPTCHA field and display errors -->
+            <div class="captcha-wrapper">
+                <div class="h-captcha" data-sitekey="{{ settings.HCAPTCHA_SITE_KEY }}"></div>
+
+                {% if form.captcha.errors %}
+                    <span class="error">{{ form.captcha.errors }}</span>
+                {% endif %}
+            </div>
+
+            <!-- Submit button disabled initially -->
+            <button id="signup-button" type='submit' onclick="submitForm()">Sign Up</button>
+            
+            <h4>Already have an account?</h4>
+            <a href="{% url 'login' %}">
+                <button type="button">Log In</button>
+            </a>
+        </form>
+    </div>
+    
+</body>
+</html>

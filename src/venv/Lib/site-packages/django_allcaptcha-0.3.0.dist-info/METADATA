@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: django-allcaptcha
+Version: 0.3.0
+Summary: Easily integrate captcha services in your Django project.
+Home-page: https://github.com/confuzeus/django-allcaptcha
+Author: Michael Karamuth
+Author-email: michael@confuzeus.com
+License: MIT license
+Keywords: django-allcaptcha
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Environment :: Plugins
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+
+# Django AllCaptcha
+
+This package allows you to easily integrate captcha services in your Django project.
+
+Currently, it supports:
+
+- HCaptcha 
+- Invisible HCaptcha 
+- Recaptcha V2 Checkbox 
+- Invisible Recaptcha V2 
+- Recaptcha V3
+
+[Read full documentation here](https://django-allcaptcha.readthedocs.io/en/latest/).
+
+
