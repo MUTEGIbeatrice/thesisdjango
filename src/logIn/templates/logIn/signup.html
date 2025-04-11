@@ -4,9 +4,6 @@
 <head>
     <title>Systems Sign Up Page</title>
 
-    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-
-
     <style media="screen">
       *, *:before, *:after {
           padding: 0;
@@ -263,16 +260,7 @@
                 </div>
             </div>
 
-            <!-- Render the reCAPTCHA field and display errors -->
-            <div class="captcha-wrapper">
-                <div class="h-captcha" data-sitekey="{{ settings.HCAPTCHA_SITE_KEY }}"></div>
-
-                {% if form.captcha.errors %}
-                    <span class="error">{{ form.captcha.errors }}</span>
-                {% endif %}
-            </div>
-
-            <!-- Submit button disabled initially -->
+            <p>A verification link will be sent to your email address.</p>
             <button id="signup-button" type='submit' onclick="submitForm()">Sign Up</button>
             
             <h4>Already have an account?</h4>

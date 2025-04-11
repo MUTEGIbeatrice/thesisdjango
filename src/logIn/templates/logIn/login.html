@@ -5,7 +5,7 @@
 <head>
     <title>Systems LogIn Page </title>
    
-    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 
     <!--Stylesheet css-->
     <style media="screen">
@@ -273,7 +273,7 @@ button:hover {
         <input type="password" placeholder="Password" name="password" autocomplete="off" required> <!-- autocomplete="off" is for passwords to prevent auto-filling security risks:-->
 
         <label for="otp">Enter OTP</label>
-        <input type="text" name="otp" placeholder="One-Time Password" autocomplete="off" required>
+        <input type="text" name="otp" placeholder="Enter One-Time Password (OTP)" autocomplete="off" required>
     
         <!-- Link to show OTP Setup Modal -->
         <div class="otp-links">
@@ -284,7 +284,9 @@ button:hover {
         
       <!-- Render the reCAPTCHA field and display errors -->
         <div class="captcha-wrapper">
-        <div class="h-captcha" data-sitekey="{{ settings.HCAPTCHA_SITE_KEY }}"></div>
+            <div class="g-recaptcha" data-sitekey="6LcMq_QqAAAAAJ9dVrS7ZZ0iGnPUrxqcOusPufqw" data-action="LOGIN"></div>
+            <!--{{ settings.RECAPTCHA_PUBLIC_KEY }}--> 
+         
 
         {% if form.captcha.errors %}
             <span class="error">{{ form.captcha.errors }}</span>
@@ -305,14 +307,35 @@ button:hover {
 <div id="otpSetupModal" class="modal">
  <div class="modal-content">
      <span class="close" id="closeModal">&times;</span>
-     <h5>Getting a OTP</h5>
-     <p>How to get a OTP:</p>
-     <ol>
-         <li>We will send a one-time password (OTP) to your registered email address.</li>
-         <li>Enter the OTP in the field above to log in.</li>
-     </ol>
+     <h3>Getting a OTP</h3>
+     <p>Step 1: A one-time password (OTP) will be sent to your registered email address.</p>
+     <p>Step 2: Enter the OTP in the field above to log in.</p>
  </div>
 </div>
+<script>
+    // Modal open and close
+    const showOtpModal = document.getElementById("showOtpModal");
+    const otpSetupModal = document.getElementById("otpSetupModal");
+    const closeModal = document.getElementById("closeModal");
+
+    // Show modal when clicking "How to get OTP?" link
+    showOtpModal.addEventListener("click", function (e) {
+        e.preventDefault();
+        otpSetupModal.style.display = "block"; // Show modal
+    });
+
+    // Close the modal when the close button is clicked
+    closeModal.addEventListener("click", function () {
+        otpSetupModal.style.display = "none"; // Hide modal
+    });
+
+    // Close the modal if the user clicks outside the modal content
+    window.addEventListener("click", function (e) {
+        if (e.target === otpSetupModal) {
+            otpSetupModal.style.display = "none"; // Hide modal
+        }
+    });
+</script>
 
 <script>
     function resendOTP(event) {

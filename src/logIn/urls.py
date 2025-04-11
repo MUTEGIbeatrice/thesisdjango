@@ -33,5 +33,6 @@ urlpatterns = [
     path("contactsupport/", contact_support, name="contactsupport"),
 
     path('resend-otp/', views.resend_otp, name='resend_otp'),  
+    path('verify-email/<uidb64>/<token>/', views.verify_email, name='verify_email'),
 
 ]

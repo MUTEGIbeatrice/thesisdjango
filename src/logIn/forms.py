@@ -3,16 +3,14 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import UserProfile
-from hcaptcha.fields import hCaptchaField
-from hcaptcha.widgets import hCaptchaWidget  # Import hCaptchaWidget
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV2Checkbox # Import reCaptchaWidget
 from .utils import generate_otp_secret
 
 
 
 class CustomUserCreationForm(UserCreationForm):
-    # Adding reCAPTCHA field
-    captcha = hCaptchaField()  
-
+    #captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
     # Adding extra fields to the form
     first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
     last_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
@@ -23,22 +21,25 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'captcha')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
     def save(self, commit=True):
         user = super().save(commit=False)  # Create User instance but don't save yet
         if commit:
             user.save()  # Save the User instance to the database
+            user.set_password(self.cleaned_data["password1"])
+            user.save()
             UserProfile.objects.get_or_create(user=user) # Ensure profile is created
 
         return user
+
     
 
 #Google reCAPTCHA for login form
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=150)
     password = forms.CharField(widget=forms.PasswordInput)
-    captcha = hCaptchaField()  
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
     otp = forms.CharField(max_length=6, required=True, widget=forms.TextInput(attrs={'placeholder': 'Enter OTP'}))
 
 

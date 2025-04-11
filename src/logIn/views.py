@@ -14,9 +14,9 @@ from datetime import date, timedelta
 from django.utils.timezone import now, timedelta
 from django.core.cache import cache  # Store failed attempts
 from .decorators import unauthenticated_user, allowed_users #FOR IMPORTING THE USER ACCESS CONTROL DECORATORS
-import requests, logging, pyotp, json
+import requests, logging, pyotp, json, random
 from django.contrib.auth.forms import PasswordChangeForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.crypto import constant_time_compare
 from axes.utils import reset
 from django_ratelimit.decorators import ratelimit
@@ -31,6 +31,13 @@ from django_otp.plugins.otp_totp.models import TOTPDevice  # To get the OTP devi
 from django_otp.models import Device
 from .utils import *
 from .utils import generate_otp_secret, send_otp
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+from django.contrib.auth.password_validation import validate_password
+from .tokens import email_token_generator
 
 
 
@@ -47,28 +54,29 @@ User = get_user_model()
 
 
 # logIn  REQUEST, AUTHENTICATION AND RESTRICTION TO AN ALREADY AUTHENTICATED USER
-@ratelimit(key='ip', rate='10/m', method='POST', block=True)
+# Uses CAPTCHAs to prevent bots.
+@ratelimit(key='ip', rate='10/m', method='POST', block=True)  # Account Lockout or Cooldown
 @unauthenticated_user  # Prevent logged-in users from accessing the login page
 def logIn(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        otp = request.POST.get('otp')  # Get OTP input
-        hcaptcha_response = request.POST.get('h-recaptcha-response', '').strip()
+        otp = request.POST.get('otp')
+        recaptcha_response = request.POST.get('g-recaptcha-response', '').strip()
 
-        # Validate hCaptcha response
-        if not verify_hcaptcha(hcaptcha_response):
+        # Validate reCAPTCHA
+        if not verify_recaptcha(recaptcha_response):
             messages.error(request, "Please complete the CAPTCHA to proceed.")
             return render(request, "logIn/login.html")
 
-        # Check for account lockout first
+        # Account lockout check
         failed_attempts = cache.get(f'failed_attempts_{username}', 0)
         if failed_attempts >= 3:
             logger.warning(f'User {username} locked out due to multiple failed login attempts')
             messages.error(request, "Too many failed login attempts. Your account is locked.")
             return redirect('lockout')
 
-        # Authenticate user
+        # User authentication
         user = authenticate(request, username=username, password=password)
 
         if user:
@@ -79,30 +87,45 @@ def logIn(request):
                 messages.error(request, "Invalid Credentials. Please try again.")
                 return render(request, "logIn/login.html")
 
-            # OTP Verification via Email
+            # OTP Verification
             if hasattr(user, 'userprofile') and user.userprofile.otp:
-                if not otp:
+                if not user.userprofile.is_otp_valid():
+                    # OTP expired, clear and prompt for new OTP
+                    user.userprofile.otp = None
+                    user.userprofile.save()
+                    messages.error(request, "Your OTP has expired. Please request a new one.")
+                    return render(request, "logIn/login.html")
+
+                if not otp:  # No OTP entered yet; generate and send one
                     otp_code = generate_otp_secret(user)
                     send_otp(user.email, otp_code)
+
+                    user.userprofile.otp = otp_code  # Save the generated OTP
+                    user.userprofile.otp_expiry = now() + timedelta(minutes=10)  # Set expiry time
+                    user.userprofile.save()
+
                     messages.info(request, "An OTP has been sent to your email.")
                     return render(request, "logIn/login.html", {"username": username, "resend": True})
-
-                if otp != user.userprofile.otp:
+                
+                if otp != user.userprofile.otp:  # Entered OTP does not match
                     failed_attempts += 1
-                    if failed_attempts >= 3:
-                        user.userprofile.otp = None  # Reset OTP
-                        user.userprofile.save()
-                    cache.set(f'failed_attempts_{username}', failed_attempts, timeout=900)
-                    messages.error(request, "Invalid OTP. Please request a new one.")
-                    return render(request, "logIn/login.html", {"username": username, "resend": True})
 
-            # Successful login
+                    if failed_attempts >= 3:  # Lock account after multiple failed attempts
+                        user.userprofile.otp = None  # Reset stored OTP
+                        user.userprofile.save()
+                        cache.set(f'failed_attempts_{username}', failed_attempts, timeout=900)  # Lock for 15 minutes
+
+                        messages.error(request, "Invalid OTP. Please request a new one.")
+                        return render(request, "logIn/login.html", {"username": username, "resend": True})
+
+            # Login successful
             logger.info(f'User {username} logged in successfully')
             messages.success(request, 'Login Successful')
             login(request, user)
             cache.delete(f'failed_attempts_{username}')
             request.session.set_expiry(settings.SESSION_COOKIE_AGE)
             return redirect('home')
+
         else:
             failed_attempts += 1
             cache.set(f'failed_attempts_{username}', failed_attempts, timeout=600)
@@ -132,13 +155,41 @@ def resend_otp(request):
             send_otp(user.email, otp_code)
 
             return JsonResponse({'message': 'OTP resent successfully.'}, status=200)
-
         except User.DoesNotExist:
             return JsonResponse({'message': 'Invalid username.'}, status=400)
-        except json.JSONDecodeError:
-            return JsonResponse({'message': 'Invalid JSON data.'}, status=400)
 
-    return JsonResponse({'message': 'Invalid request method.'}, status=405)
+
+# Function to verify Google reCAPTCHA
+def verify_recaptcha(recaptcha_response):
+    secret_key = settings.RECAPTCHA_PRIVATE_KEY  # Google reCAPTCHA secret key
+    data = {
+        'secret': secret_key,
+        'response': recaptcha_response
+    }
+
+    try:
+        response = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = response.json()
+
+        if not result.get('success'):
+            error_codes = result.get("error-codes", [])
+            logging.error(f"reCAPTCHA validation failed: {error_codes}")
+
+            if "timeout-or-duplicate" in error_codes:
+                messages.error(request, "reCAPTCHA expired. Please refresh and try again.")
+            else:
+                messages.error(request, "CAPTCHA verification failed. Please try again.")
+
+            return False  # Return False if validation failed
+
+        return True  # Return True if validation succeeded
+
+    except requests.exceptions.RequestException as e:
+        logging.error(f"reCAPTCHA request failed: {e}")
+        messages.error(request, "Error verifying CAPTCHA. Please try again.")
+        return False
+
+
 
 #Home page view
 @login_required(login_url='login')   # RESTRICTION ON UNAUTHENTICATED USERS AND DERIVED FROM 'IMPORT LOGIN_REQUIRED'
@@ -162,26 +213,75 @@ def home(request):
     return render(request, "logIn/home.html")
 
 
-# SIGN UP VIEW
+
+
+# SIGN UP VIEW (uses email verification to prevent bots)
 def signup(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST, request.FILES)
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)  # Don't save yet
+            user.is_active = False  # Set user to inactive until email is verified
 
-        if form.is_valid():  # Only check reCAPTCHA if form is valid
-            if not validate_hcaptcha(request):  # Use function to verify reCAPTCHA
-                return render(request, "logIn/signup.html", {"form": form, "HCAPTCHA_SITE_KEY": settings.HCAPTCHA_SITE_KEY})
+            try:
+                # Run password validation before saving the user
+                validate_password(user.password, user)
+            except ValidationError as e:
+                form.add_error('password', e)
+                return render(request, "logIn/signup.html", {"form": form})
 
-            form.save()
-            messages.success(request, "Account created successfully! Please log in.")
+            user.save()  # Save the user after validation
+
+            # Create UserProfile automatically
+            UserProfile.objects.create(user=user)
+
+            # Generate UID and token
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            token = email_token_generator.make_token(user)
+
+            # Construct verification URL
+            verify_url = request.build_absolute_uri(
+                reverse('verify_email', kwargs={'uidb64': uid, 'token': token})
+            )
+
+            try:
+                send_mail(
+                    subject="Verify Your Email",
+                    message=f"Hi {user.username},\n\nPlease click the link below to verify your email:\n{verify_url}",
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=[user.email],
+                    fail_silently=False,
+                )
+                logger.info("Email sent successfully to %s", user.email)
+            except Exception as e:
+                logger.error("Error sending email: %s", str(e))
+
+            messages.success(request, "Check your email (in the inbox, spam or promotion folder) to verify your account.")
             return redirect("login")
-        else:
-            messages.error(request, "There were errors in the form. Please check and try again.")
-            logging.error(f"Signup Form Errors: {form.errors}")
-
     else:
         form = CustomUserCreationForm()
 
-    return render(request, "logIn/signup.html", {"form": form, "HCAPTCHA_SITE_KEY": settings.HCAPTCHA_SITE_KEY})
+    return render(request, "logIn/signup.html", {"form": form})
+
+
+
+
+# Function to verify emails when signing up
+def verify_email(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user and email_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        return render(request, "logIn/email_verification_success.html")  # Styled success page
+    else:
+        messages.error(request, "Verification link is invalid or has expired.")
+        return redirect('signup')
+
 
 
 # PASSWORD CHANGING
@@ -192,7 +292,8 @@ class CustomPasswordChangeView(PasswordChangeView):
 
 
 
-# Password change with CAPTCHA validation
+
+# Password change 
 @login_required
 def custom_password_change(request):
     if request.method == 'POST':
@@ -222,13 +323,6 @@ def logOut(request):
 
 
 
-#LOCKOUT
-def lockOut(request):
-    messages.success(request, "Too many failed login attempts. Your account is locked.")
-    return render(request, 'logIn/lockout.html')
-
-
-
 def contact_support(request):
     if request.method == "POST":
        
@@ -238,16 +332,16 @@ def contact_support(request):
             email = request.user.email if request.user.is_authenticated else form.cleaned_data['emailGuest']
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            admin_email = "beatkare@gmail.com"  # Change to Django admin's email
+            admin_email = "djangoapp2025@gmail.com"  # Django admin's email
 
             # Format the message to include the username
             full_message = f"User: {username}\nEmail: {email}\n\nMessage:\n{message}"
 
             # Send an email to admin
             send_mail(
-                subject=f"Support Request from {username}: {subject}",
+                subject=f"Support Request from {username}: {subject}: {email}",
                 message=full_message,
-                from_email="noreply@example.com",
+                from_email="djangoapp2025@gmail.com",
                 recipient_list=[admin_email],
                 fail_silently=False,
             )
@@ -262,6 +356,14 @@ def contact_support(request):
     return render(request, "logIn/contactsupport.html", {"form": form})
 
 
+
+#LOCKOUT
+def lockOut(request):
+    messages.success(request, "Too many failed login attempts. Your account is locked.")
+    return render(request, 'logIn/lockout.html')
+
+
+
 #To notify administrators when someone is locked out.
 @receiver(user_locked_out)
 def send_lockout_alert(request, username, ip_address, **kwargs):
@@ -269,58 +371,8 @@ def send_lockout_alert(request, username, ip_address, **kwargs):
         "Account Locked Out",
         f"User {username} has been locked out due to too many failed login attempts.\n"
         f"IP Address: {ip_address}",
-        "noreply@example.com",
-        ["admin@example.com"],
+        "djangoapp2025@gmail.com",
+        ["djangoapp2025@gmail.com"],
     )
 
 
-
-# Function to verify reCAPTCHA
-def verify_hcaptcha(hcaptcha_response):
-    secret_key = settings.HCAPTCHA_SECRET_KEY  # hCaptcha secret key
-    data = {
-        'secret': secret_key,
-        'response': hcaptcha_response
-    }
-    
-    # Send the POST request to Google's reCAPTCHA API
-    r = requests.post("https://hcaptcha.com/siteverify", data=data)
-    
-    # Return the verification result
-    return r.json().get("success", False)
-
-
-# Function to handle form submission and validate reCAPTCHA
-
-def validate_hcaptcha(request):
-    hcaptcha_response = request.POST.get('h-recaptcha-response')
-    if not hcaptcha_response:
-        messages.error(request, "Please complete the CAPTCHA verification.")
-        return False
-
-    data = {
-        'secret': settings.HCAPTCHA_SECRET_KEY,
-        'response': hcaptcha_response
-    }
-
-    try:
-        response = requests.post('https://hcaptcha.com/siteverify', data=data)
-        result = response.json()
-
-        if not result.get('success'):
-            error_codes = result.get("error-codes", [])
-            logging.error(f"hCAPTCHA validation failed: {error_codes}")
-
-            if "timeout-or-duplicate" in error_codes:
-                messages.error(request, "hCAPTCHA expired. Please refresh and try again.")
-            else:
-                messages.error(request, "CAPTCHA verification failed. Please try again.")
-
-            return False  # Return False if validation failed
-
-        return True  # Return True if validation succeeded
-
-    except requests.exceptions.RequestException as e:
-        logging.error(f"hCAPTCHA request failed: {e}")
-        messages.error(request, "Error verifying CAPTCHA. Please try again.")
-        return False

@@ -13,11 +13,13 @@ def custom_lockout_callable(request, credentials):
     """
     return render(request, 'logIn/lockout.html', status=403)
 
+
 # Generate OTP secret for the user
 def generate_otp_secret(user):
     otp = pyotp.TOTP(pyotp.random_base32()).now()  # Secure OTP generation
     # Store OTP temporarily in user profile (or session)
     user_profile, created = UserProfile.objects.get_or_create(user=user)  # Ensure profile exists
+    #Ensure profile exists
     user_profile.otp = otp
     user_profile.save()
     return otp
