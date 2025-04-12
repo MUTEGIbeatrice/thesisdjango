@@ -271,8 +271,6 @@ AXES_LOCKOUT_PARAMETERS = ['ip_address','username'] #Tracks both ip address and 
 
 AXES_RESET_ON_SUCCESS = True #Resets counter after successful login
 
-AXES_ONLY_USER_FAILURES = False  # Track both username and IP failures
-
 AXES_ENABLE_ADMIN = False  # Enable Axes in Django admin panel
 
 AXES_LOCKOUT_TEMPLATE = "logIn/lockout.html"  # Custom lockout page 
