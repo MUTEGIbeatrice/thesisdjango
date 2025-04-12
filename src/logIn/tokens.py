@@ -19,7 +19,7 @@ class EmailVerificationTokenGenerator(PasswordResetTokenGenerator):
             return False
 
         token_time = datetime.fromtimestamp(timestamp)
-        if datetime.now() - token_time > timedelta(hours=24):  # 24-hour expiry
+        if datetime.now() - token_time > timedelta(hours=24):  # 24 hours expiry
             return False
 
         return True

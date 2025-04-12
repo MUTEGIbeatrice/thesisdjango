@@ -13,6 +13,8 @@ def unauthenticated_user(view_func):
         return view_func(request, *args, **kwargs)
     return _wrapped_view
 
+    
+
  # FUNCTION DECORATORS FOR AUTHENTICATED USERS (TO ENABLE ACCESS CONTROL AS PER THE USER ROLES)
 def allowed_users(allowed_roles=[]):
     def decorator(view_func):

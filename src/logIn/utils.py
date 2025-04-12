@@ -3,6 +3,10 @@ import pyotp, random
 from django.core.mail import send_mail
 from django.conf import settings
 from .models import UserProfile
+from django.utils import timezone
+from datetime import timedelta 
+
+
 
 
 # Lockout
@@ -16,12 +20,17 @@ def custom_lockout_callable(request, credentials):
 
 # Generate OTP secret for the user
 def generate_otp_secret(user):
-    otp = pyotp.TOTP(pyotp.random_base32()).now()  # Secure OTP generation
-    # Store OTP temporarily in user profile (or session)
-    user_profile, created = UserProfile.objects.get_or_create(user=user)  # Ensure profile exists
-    #Ensure profile exists
+    # Generate a secure random OTP
+    otp = str(random.randint(100000, 999999))  # 6-digit OTP
+    
+    # Get or create user profile
+    user_profile, created = UserProfile.objects.get_or_create(user=user)
+    
+    # Set OTP and expiry (10 minutes from now)
     user_profile.otp = otp
+    user_profile.otp_expiry = timezone.now() + timedelta(minutes=10)
     user_profile.save()
+    
     return otp
 
 

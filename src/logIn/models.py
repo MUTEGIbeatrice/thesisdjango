@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User #IMPORTING USER MODEL
 from django.utils import timezone
+import logging
+
 
 
 # Create your models here.
 
 #USER PROFILE IS AN EXTENSION TO dJANGO'S MODEL OF USERS' PROFILE
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     otp_secret = models.CharField(max_length=32, blank=True, null=True)  # Store OTP secret
@@ -14,7 +15,12 @@ class UserProfile(models.Model):
     otp_expiry = models.DateTimeField(null=True, blank=True)
 
     def is_otp_valid(self):
-        return self.otp_expiry and timezone.now() < self.otp_expiry
+        if not self.otp or not self.otp_expiry:
+            return False
+        now = timezone.now()
+        logger = logging.getLogger(__name__)
+        logger.info(f"Checking OTP validity - Current: {now}, Expiry: {self.otp_expiry}")
+        return now < self.otp_expiry
 
     gender = models.CharField(
         max_length=6,
@@ -33,7 +39,11 @@ class UserProfile(models.Model):
     )
 
     def __str__(self):
-        # Defensive check to ensure user is not None and user.username is not empty
-        if self.user and self.user.username:
-            return f"{self.user.username}'s Profile"
-        return "Unknown User Profile"
+        try:
+            username = getattr(self.user, 'username', None)
+            if username:
+                return f"{username}'s Profile"
+            return "User Profile (No Username)"
+        except Exception as e:
+            return f"User Profile (Error: {e})"
+       

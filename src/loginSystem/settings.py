@@ -243,7 +243,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Keeps updating the expiry time with every request
 # Set session to expire after inactivity
-SESSION_COOKIE_AGE = 1200  # 20 minutes (1200 seconds)
+SESSION_COOKIE_AGE = 1500  # 25 minutes (1500 seconds)
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Session expires when the browser closes
 
@@ -270,6 +270,8 @@ AXES_LOCKOUT_CALLABLE = 'logIn.utils.custom_lockout_callable'
 AXES_LOCKOUT_PARAMETERS = ['ip_address','username'] #Tracks both ip address and username
 
 AXES_RESET_ON_SUCCESS = True #Resets counter after successful login
+
+AXES_ONLY_USER_FAILURES = False  # Track both username and IP failures
 
 AXES_ENABLE_ADMIN = False  # Enable Axes in Django admin panel
 

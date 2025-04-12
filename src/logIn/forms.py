@@ -25,13 +25,21 @@ class CustomUserCreationForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)  # Create User instance but don't save yet
+        user.set_password(self.cleaned_data["password1"])  # Set hashed password
+
         if commit:
             user.save()  # Save the User instance to the database
-            user.set_password(self.cleaned_data["password1"])
-            user.save()
             UserProfile.objects.get_or_create(user=user) # Ensure profile is created
 
         return user
+
+
+    #email uniqueness check
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("A user with this email already exists.")
+        return email
 
     
 

@@ -4888,10 +4888,746 @@ Watching for file changes with StatReloader
 "GET / HTTP/1.1" 200 9125
 "POST /resend-otp/ HTTP/1.1" 200 39
 "POST /login/ HTTP/1.1" 200 9347
+"GET / HTTP/1.1" 200 9125
+"GET /signup/ HTTP/1.1" 200 7439
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 222, in signup
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 259, in _post_clean
+    self.validate_password_for_user(self.instance)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 145, in validate_password_for_user
+    password_validation.validate_password(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\password_validation.py", line 53, in validate_password
+    validator.validate(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 67, in validate
+    if not self._user_ok(user):
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 39, in _user_ok
+    'An unsaved user model!s %r'
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+TypeError: __str__ returned non-string (type NoneType)
+"POST /signup/ HTTP/1.1" 500 117880
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 222, in signup
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 259, in _post_clean
+    self.validate_password_for_user(self.instance)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 145, in validate_password_for_user
+    password_validation.validate_password(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\password_validation.py", line 53, in validate_password
+    validator.validate(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 67, in validate
+    if not self._user_ok(user):
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 39, in _user_ok
+    'An unsaved user model!s %r'
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+TypeError: __str__ returned non-string (type NoneType)
+"POST /signup/ HTTP/1.1" 500 117880
+"GET /signup/ HTTP/1.1" 200 7439
+"GET /signup/ HTTP/1.1" 200 7439
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 222, in signup
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 259, in _post_clean
+    self.validate_password_for_user(self.instance)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 145, in validate_password_for_user
+    password_validation.validate_password(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\password_validation.py", line 53, in validate_password
+    validator.validate(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 67, in validate
+    if not self._user_ok(user):
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 39, in _user_ok
+    'An unsaved user model!s %r'
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+TypeError: __str__ returned non-string (type NoneType)
+"POST /signup/ HTTP/1.1" 500 117880
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9125
+"GET / HTTP/1.1" 200 9125
 AXES: BEGIN version 7.0.2, blocking by ip_address or username
 AXES: BEGIN version 7.0.2, blocking by ip_address or username
 Watching for file changes with StatReloader
 "GET / HTTP/1.1" 200 9125
 "POST /resend-otp/ HTTP/1.1" 200 39
 "POST /login/ HTTP/1.1" 200 9347
+"POST /resend-otp/ HTTP/1.1" 200 39
+"POST /login/ HTTP/1.1" 200 9347
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 27, in _wrapped
+    return fn(request, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\decorators.py", line 13, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 68, in logIn
+    if not verify_recaptcha(recaptcha_response):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 179, in verify_recaptcha
+    else:
+         
+NameError: name 'request' is not defined
+"POST /login/ HTTP/1.1" 500 103981
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 27, in _wrapped
+    return fn(request, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\decorators.py", line 13, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 68, in logIn
+    if not verify_recaptcha(recaptcha_response):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify_recaptcha() missing 1 required positional argument: 'recaptcha_response'
+"POST /login/ HTTP/1.1" 500 95138
+"GET / HTTP/1.1" 200 9125
 "GET /signup/ HTTP/1.1" 200 7439
+"POST /resend-otp/ HTTP/1.1" 200 39
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 27, in _wrapped
+    return fn(request, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\decorators.py", line 13, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 68, in logIn
+    if not verify_recaptcha(recaptcha_response):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify_recaptcha() missing 1 required positional argument: 'recaptcha_response'
+"POST /login/ HTTP/1.1" 500 95004
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9125
+"GET / HTTP/1.1" 200 9125
+"POST /resend-otp/ HTTP/1.1" 200 39
+"POST /login/ HTTP/1.1" 200 9347
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"POST /login/ HTTP/1.1" 200 9556
+"POST /login/ HTTP/1.1" 200 9556
+"GET / HTTP/1.1" 200 9125
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9125
+"POST /resend-otp/ HTTP/1.1" 200 39
+"POST /login/ HTTP/1.1" 200 9347
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET /signup/ HTTP/1.1" 200 7439
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 231, in signup
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 259, in _post_clean
+    self.validate_password_for_user(self.instance)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 145, in validate_password_for_user
+    password_validation.validate_password(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\password_validation.py", line 53, in validate_password
+    validator.validate(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 67, in validate
+    if not self._user_ok(user):
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 39, in _user_ok
+    'An unsaved user model!s %r'
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+TypeError: __str__ returned non-string (type NoneType)
+"POST /signup/ HTTP/1.1" 500 117935
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /login/?next=/admin/ HTTP/1.1" 200 9125
+"GET /signup/ HTTP/1.1" 200 7439
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 231, in signup
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 259, in _post_clean
+    self.validate_password_for_user(self.instance)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 145, in validate_password_for_user
+    password_validation.validate_password(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\password_validation.py", line 53, in validate_password
+    validator.validate(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 67, in validate
+    if not self._user_ok(user):
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 39, in _user_ok
+    'An unsaved user model!s %r'
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+TypeError: __str__ returned non-string (type NoneType)
+"POST /signup/ HTTP/1.1" 500 117935
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\signals.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\signals.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET /signup/ HTTP/1.1" 200 7439
+"GET /signup/ HTTP/1.1" 200 7439
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 231, in signup
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 259, in _post_clean
+    self.validate_password_for_user(self.instance)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 145, in validate_password_for_user
+    password_validation.validate_password(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\password_validation.py", line 53, in validate_password
+    validator.validate(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 67, in validate
+    if not self._user_ok(user):
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 39, in _user_ok
+    'An unsaved user model!s %r'
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+TypeError: __str__ returned non-string (type NoneType)
+"POST /signup/ HTTP/1.1" 500 117935
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\signals.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\signals.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9125
+"GET /signup/ HTTP/1.1" 200 7439
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 232, in signup
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 259, in _post_clean
+    self.validate_password_for_user(self.instance)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 145, in validate_password_for_user
+    password_validation.validate_password(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\password_validation.py", line 53, in validate_password
+    validator.validate(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 67, in validate
+    if not self._user_ok(user):
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 39, in _user_ok
+    'An unsaved user model!s %r'
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+TypeError: __str__ returned non-string (type NoneType)
+"POST /signup/ HTTP/1.1" 500 117935
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9125
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\utils.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\utils.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\forms.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9125
+Internal Server Error: /resend-otp/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 164, in resend_otp
+    otp_code = generate_otp_secret(user)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\utils.py", line 24, in generate_otp_secret
+    user_profile.otp_expiry = timezone.now() + timedelta(minutes=10)  # Set 10-minute expiry
+                              ^^^^^^^^
+NameError: name 'timezone' is not defined
+"POST /resend-otp/ HTTP/1.1" 500 83695
+Internal Server Error: /resend-otp/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 164, in resend_otp
+    otp_code = generate_otp_secret(user)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\utils.py", line 24, in generate_otp_secret
+    user_profile.otp_expiry = timezone.now() + timedelta(minutes=10)  # Set 10-minute expiry
+                              ^^^^^^^^
+NameError: name 'timezone' is not defined
+"POST /resend-otp/ HTTP/1.1" 500 83695
+Internal Server Error: /resend-otp/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 164, in resend_otp
+    otp_code = generate_otp_secret(user)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\utils.py", line 24, in generate_otp_secret
+    user_profile.otp_expiry = timezone.now() + timedelta(minutes=10)  # Set 10-minute expiry
+                              ^^^^^^^^
+NameError: name 'timezone' is not defined
+"POST /resend-otp/ HTTP/1.1" 500 83695
+Internal Server Error: /resend-otp/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 164, in resend_otp
+    otp_code = generate_otp_secret(user)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\utils.py", line 24, in generate_otp_secret
+    user_profile.otp_expiry = timezone.now() + timedelta(minutes=10)  # Set 10-minute expiry
+                              ^^^^^^^^
+NameError: name 'timezone' is not defined
+"POST /resend-otp/ HTTP/1.1" 500 83695
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\utils.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9125
+Internal Server Error: /resend-otp/
+"POST /resend-otp/ HTTP/1.1" 500 73
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\utils.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\utils.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9125
+Internal Server Error: /resend-otp/
+"POST /resend-otp/ HTTP/1.1" 500 73
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\utils.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9125
+"POST /resend-otp/ HTTP/1.1" 200 60
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 27, in _wrapped
+    return fn(request, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\decorators.py", line 13, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 93, in logIn
+    if not user.userprofile.is_otp_valid():
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py", line 20, in is_otp_valid
+    logger = logging.getLogger(__name__)
+             ^^^^^^^
+NameError: name 'logging' is not defined
+"POST /login/ HTTP/1.1" 500 99368
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\models.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9125
+"GET / HTTP/1.1" 200 9125
+"GET / HTTP/1.1" 200 9125
+"POST /resend-otp/ HTTP/1.1" 200 60
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-12 02:28:39.029682+00:00
+AXES: Successful login by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/login/"}.
+AXES: Reset 0 access attempts from database.
+AXES: Deleted 0 failed login attempts by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/login/"} from database.
+"POST /login/ HTTP/1.1" 302 0
+"GET /home/ HTTP/1.1" 200 4564
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-12 02:29:11.250973+00:00
+AXES: Successful logout by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/logout/"}.
+"POST /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 9325
+"GET /signup/ HTTP/1.1" 200 7439
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 251, in signup
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 259, in _post_clean
+    self.validate_password_for_user(self.instance)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\forms.py", line 145, in validate_password_for_user
+    password_validation.validate_password(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\password_validation.py", line 53, in validate_password
+    validator.validate(password, user)
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 67, in validate
+    if not self._user_ok(user):
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_password_validators\password_history\password_validation.py", line 39, in _user_ok
+    'An unsaved user model!s %r'
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+TypeError: __str__ returned non-string (type NoneType)
+"POST /signup/ HTTP/1.1" 500 117935
+"GET /signup/ HTTP/1.1" 200 7439
+"GET /login/ HTTP/1.1" 200 9125
+"POST /login/ HTTP/1.1" 200 9554
+"POST /login/ HTTP/1.1" 200 9347
+"POST /login/ HTTP/1.1" 200 9596
+"POST /login/ HTTP/1.1" 200 9596
+"GET / HTTP/1.1" 200 9165
+"POST /resend-otp/ HTTP/1.1" 200 60
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-12 02:52:05.825242+00:00
+AXES: Successful login by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/login/"}.
+AXES: Reset 0 access attempts from database.
+AXES: Deleted 0 failed login attempts by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/login/"} from database.
+"POST /login/ HTTP/1.1" 302 0
+"GET /home/ HTTP/1.1" 200 4564
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\loginSystem\settings.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\loginSystem\settings.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-12 03:09:20.757168+00:00
+AXES: Successful logout by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/logout/"}.
+"POST /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 9366
+"POST /resend-otp/ HTTP/1.1" 200 60
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-12 03:10:13.020401+00:00
+AXES: Successful login by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/login/"}.
+AXES: Reset 0 access attempts from database.
+AXES: Deleted 0 failed login attempts by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/login/"} from database.
+"POST /login/ HTTP/1.1" 302 0
+"GET /home/ HTTP/1.1" 200 4564
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\loginSystem\settings.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader

@@ -38,6 +38,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
 from .tokens import email_token_generator
+from django.db import transaction
 
 
 
@@ -65,7 +66,7 @@ def logIn(request):
         recaptcha_response = request.POST.get('g-recaptcha-response', '').strip()
 
         # Validate reCAPTCHA
-        if not verify_recaptcha(recaptcha_response):
+        if not verify_recaptcha(request, recaptcha_response):
             messages.error(request, "Please complete the CAPTCHA to proceed.")
             return render(request, "logIn/login.html")
 
@@ -97,13 +98,22 @@ def logIn(request):
                     return render(request, "logIn/login.html")
 
                 if not otp:  # No OTP entered yet; generate and send one
+                    from django.utils import timezone
                     otp_code = generate_otp_secret(user)
                     send_otp(user.email, otp_code)
-
-                    user.userprofile.otp = otp_code  # Save the generated OTP
-                    user.userprofile.otp_expiry = now() + timedelta(minutes=10)  # Set expiry time
+                    
+                    # Clear any existing OTP first
+                    user.userprofile.otp = None
+                    user.userprofile.otp_expiry = None
                     user.userprofile.save()
-
+                    
+                    # Set new OTP with proper timezone handling
+                    user.userprofile.otp = otp_code
+                    user.userprofile.otp_expiry = timezone.localtime(timezone.now()) + timedelta(minutes=10)
+                    user.userprofile.save()
+                    
+                    logger.info(f"Generated OTP for {user.username} at {timezone.localtime(timezone.now())}, expires at {user.userprofile.otp_expiry}")
+                    
                     messages.info(request, "An OTP has been sent to your email.")
                     return render(request, "logIn/login.html", {"username": username, "resend": True})
                 
@@ -148,19 +158,38 @@ def resend_otp(request):
                 return JsonResponse({'message': 'Username is required.'}, status=400)
 
             user = User.objects.get(username=username)
-            user.userprofile.otp = None  # Reset previous OTP
+            
+            # Reset OTP and expiry
+            user.userprofile.otp = None
+            user.userprofile.otp_expiry = None
             user.userprofile.save()
 
+            # Generate and send new OTP
             otp_code = generate_otp_secret(user)
             send_otp(user.email, otp_code)
 
-            return JsonResponse({'message': 'OTP resent successfully.'}, status=200)
+            return JsonResponse({
+                'message': 'OTP resent successfully.',
+                'status': 'success'
+            }, status=200)
+            
         except User.DoesNotExist:
-            return JsonResponse({'message': 'Invalid username.'}, status=400)
+            return JsonResponse({
+                'message': 'Invalid username.',
+                'status': 'error'
+            }, status=400)
+            
+        except Exception as e:
+            logger.error(f"Failed to resend OTP: {str(e)}")
+            return JsonResponse({
+                'message': 'Failed to resend OTP. Please try again.',
+                'status': 'error'
+            }, status=500)
 
 
+            
 # Function to verify Google reCAPTCHA
-def verify_recaptcha(recaptcha_response):
+def verify_recaptcha(request, recaptcha_response):
     secret_key = settings.RECAPTCHA_PRIVATE_KEY  # Google reCAPTCHA secret key
     data = {
         'secret': secret_key,
@@ -232,9 +261,7 @@ def signup(request):
 
             user.save()  # Save the user after validation
 
-            # Create UserProfile automatically
-            UserProfile.objects.create(user=user)
-
+            
             # Generate UID and token
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             token = email_token_generator.make_token(user)
@@ -245,16 +272,31 @@ def signup(request):
             )
 
             try:
+                # Prepare email context
+                context = {
+                    'username': user.username,
+                    'verify_url': verify_url,
+                }
+                
+                # Render email content from template
+                email_content = render_to_string('logIn/email_verification.html', context)
+                plain_message = strip_tags(email_content)
+                
+                # Send email
                 send_mail(
                     subject="Verify Your Email",
-                    message=f"Hi {user.username},\n\nPlease click the link below to verify your email:\n{verify_url}",
+                    message=plain_message,
                     from_email=settings.EMAIL_HOST_USER,
                     recipient_list=[user.email],
-                    fail_silently=False,
+                    html_message=email_content,
+                    fail_silently=False
                 )
-                logger.info("Email sent successfully to %s", user.email)
+                logger.info("Verification email sent successfully to %s", user.email)
             except Exception as e:
-                logger.error("Error sending email: %s", str(e))
+                logger.error("Failed to send verification email to %s: %s", user.email, str(e))
+                messages.error(request, "Failed to send verification email. Please try again later.")
+                user.delete()  # Clean up the inactive user
+                return redirect('signup')
 
             messages.success(request, "Check your email (in the inbox, spam or promotion folder) to verify your account.")
             return redirect("login")
