@@ -6,11 +6,13 @@ from .models import UserProfile
 from django_recaptcha.fields import ReCaptchaField
 from django_recaptcha.widgets import ReCaptchaV2Checkbox # Import reCaptchaWidget
 from .utils import generate_otp_secret
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 
-
+    
+    #Extends UserCreationForm with: Email field validation, Password strength requirements, Custom error messages
 class CustomUserCreationForm(UserCreationForm):
-    #captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
     # Adding extra fields to the form
     first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
     last_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
@@ -34,13 +36,21 @@ class CustomUserCreationForm(UserCreationForm):
         return user
 
 
-    #email uniqueness check
+    #checks if email is unique 
     def clean_email(self):
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("A user with this email already exists.")
         return email
 
+
+#Checks password validation
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise ValidationError(_("Passwords don't match"))
+        return password2
     
 
 #Google reCAPTCHA for login form

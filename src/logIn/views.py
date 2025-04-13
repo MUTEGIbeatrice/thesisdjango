@@ -26,9 +26,6 @@ from django.core.mail import send_mail #Sending alert mails
 from django.dispatch import receiver
 from axes.signals import user_locked_out
 from django.contrib.auth.views import PasswordChangeView
-from django_otp.forms import OTPAuthenticationForm
-from django_otp.plugins.otp_totp.models import TOTPDevice  # To get the OTP device associated with the user
-from django_otp.models import Device
 from .utils import *
 from .utils import generate_otp_secret, send_otp
 from django.contrib.auth.tokens import default_token_generator
@@ -39,6 +36,9 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
 from .tokens import email_token_generator
 from django.db import transaction
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
 
 
 
@@ -247,81 +247,123 @@ def home(request):
 # SIGN UP VIEW (uses email verification to prevent bots)
 def signup(request):
     if request.method == 'POST':
+        # Process form submission
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)  # Don't save yet
-            user.is_active = False  # Set user to inactive until email is verified
-
             try:
-                # Run password validation before saving the user
-                validate_password(user.password, user)
-            except ValidationError as e:
-                form.add_error('password', e)
+                # Use atomic transaction to ensure all operations succeed or fail together
+                with transaction.atomic():
+                    # Create user but don't save to DB yet
+                    user = form.save(commit=False)
+                    # Mark user as inactive until email is verified
+                    user.is_active = False  
+                    # Save user to database
+                    user.save()  
+                    
+                    # Create associated user profile if it doesn't exist
+                    if not hasattr(user, 'userprofile'):
+                        UserProfile.objects.create(user=user)
+                    
+                    # Send verification email
+                    try:
+                        verify_email(request, user, form.cleaned_data.get('email'))
+                        messages.success(request, 
+                            f'Dear {user.username},' 
+                            f'To complete your registration, please check your email {form.cleaned_data.get("email")} '
+                            f'(including spam folder) for the activation link.')
+
+                    except Exception as e:
+                        logger.error(f"Failed to send verification email: {str(e)}")
+                        messages.error(request, "Account created but failed to send verification email. Please contact support.")
+                    
+                    
+            except Exception as e:
+                # Log detailed error for debugging
+                logger.error(f"Error during signup: {str(e)}", exc_info=True)
+                # User-friendly error message
+                messages.error(request, 
+                    "An error occurred during registration. Please try again.")
                 return render(request, "logIn/signup.html", {"form": form})
 
-            user.save()  # Save the user after validation
-
-            
-            # Generate UID and token
-            uid = urlsafe_base64_encode(force_bytes(user.pk))
-            token = email_token_generator.make_token(user)
-
-            # Construct verification URL
-            verify_url = request.build_absolute_uri(
-                reverse('verify_email', kwargs={'uidb64': uid, 'token': token})
-            )
-
-            try:
-                # Prepare email context
-                context = {
-                    'username': user.username,
-                    'verify_url': verify_url,
-                }
-                
-                # Render email content from template
-                email_content = render_to_string('logIn/email_verification.html', context)
-                plain_message = strip_tags(email_content)
-                
-                # Send email
-                send_mail(
-                    subject="Verify Your Email",
-                    message=plain_message,
-                    from_email=settings.EMAIL_HOST_USER,
-                    recipient_list=[user.email],
-                    html_message=email_content,
-                    fail_silently=False
-                )
-                logger.info("Verification email sent successfully to %s", user.email)
-            except Exception as e:
-                logger.error("Failed to send verification email to %s: %s", user.email, str(e))
-                messages.error(request, "Failed to send verification email. Please try again later.")
-                user.delete()  # Clean up the inactive user
-                return redirect('signup')
-
-            messages.success(request, "Check your email (in the inbox, spam or promotion folder) to verify your account.")
-            return redirect("login")
+        else:
+            # Log form validation errors
+            logger.error(f"Form validation failed: {form.errors}")
+            # Display each error to user
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
     else:
+        # GET request - show empty form
         form = CustomUserCreationForm()
-
+        
     return render(request, "logIn/signup.html", {"form": form})
 
 
 
+#Sends email verification link to new user.
+def verify_email(request, user, to_email):
+    mail_subject = "Activate your user account."
+    
+    # Build verification URL
+    uid = urlsafe_base64_encode(force_bytes(user.pk))
+    token = email_token_generator.make_token(user)
+    verify_url = f"{'https' if request.is_secure() else 'http'}://{get_current_site(request).domain}{reverse('activate', kwargs={'uidb64': uid, 'token': token})}"
 
-# Function to verify emails when signing up
-def verify_email(request, uidb64, token):
+    # Render email template with context
+    message = render_to_string("logIn/email_verification.html", {
+        'user': user.username,
+        'verify_url': verify_url,
+        'domain': get_current_site(request).domain,
+        'uid': uid,
+        'token': token,
+        'protocol': 'https' if request.is_secure() else 'http'
+    })
+    
+    # Create email message
+    email = EmailMessage(
+        mail_subject,
+        message,
+        settings.EMAIL_HOST_USER,  # From address
+        [to_email]  # Recipient list
+    )
+    
     try:
-        uid = urlsafe_base64_decode(uidb64).decode()
+        # Attempt to send email
+        if email.send():
+            messages.success(request, 
+                f'Dear {user.username},' 
+                f'To complete your registration, please check your email {to_email}'
+                f'(including spam folder) for the activation link.')
+        else:
+            raise Exception("Email sending failed silently")
+            
+    except Exception as e:
+        logger.error(f"Failed to send verification email to {to_email}: {str(e)}")
+        messages.error(request, 
+            f'Problem sending email to {to_email}. Please verify your email address.')
+
+
+
+#To activate/verify email during signup
+def activate(request, uidb64, token):
+    User = get_user_model()
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
-
-    if user and email_token_generator.check_token(user, token):
-        user.is_active = True
-        user.save()
-        return render(request, "logIn/email_verification_success.html")  # Styled success page
+    
+    if user is not None and email_token_generator.check_token(user, token):
+        if not user.is_active:  # Only activate if not already active
+            user.is_active = True
+            user.save()
+            messages.success(request, "Email Confirmed Successfully.")
+            return redirect('email_verification_success')
+        else:
+            messages.info(request, "Your account is already active.")
+            return redirect('login')
     else:
-        messages.error(request, "Verification link is invalid or has expired.")
+        messages.error(request, "Invalid activation link - it may have expired or been used already.")
         return redirect('signup')
 
 
@@ -360,7 +402,7 @@ def custom_password_change(request):
 #Logout Request
 def logOut(request): 
     logout(request)  # Logs out the user
-    messages.success(request, "You have been logged out.")   
+    messages.success(request, "You have successfully logged out.")   
     return redirect('login')  # Redirect to the login page after logout
 
 
@@ -406,15 +448,6 @@ def lockOut(request):
 
 
 
-#To notify administrators when someone is locked out.
-@receiver(user_locked_out)
-def send_lockout_alert(request, username, ip_address, **kwargs):
-    send_mail(
-        "Account Locked Out",
-        f"User {username} has been locked out due to too many failed login attempts.\n"
-        f"IP Address: {ip_address}",
-        "djangoapp2025@gmail.com",
-        ["djangoapp2025@gmail.com"],
-    )
+
 
 

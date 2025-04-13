@@ -10,6 +10,7 @@ from django.contrib.auth.models import Group #FOR IMPORTING USERS GROUP MODELS
 from django.contrib import messages #FOR ERROR AND INFORMATION/STATUS MESSAGES 
 from django.contrib.auth.decorators import login_required #FOR ENABLING VIEW RESTRICTIONS UNTIL LOGGED IN 
 from datetime import date, timedelta
+from django.views.generic import TemplateView
 from .views import custom_password_change, CustomPasswordChangeView
 from .views import contact_support
 
@@ -17,6 +18,7 @@ from .views import contact_support
 
 
 urlpatterns = [
+    #URL for Login, Logout, Home, Signup pages
     path('',views.logIn, name="login"), 
     path('login/',views.logIn, name="login"), 
     path('logout/',views.logOut, name="logout"),
@@ -24,15 +26,21 @@ urlpatterns = [
     path('signup/',views.signup, name="signup"),
     
     
-    # Password Management
+    # URL for Password Management
     path('passwordchange/', views.CustomPasswordChangeView.as_view(), name='passwordchange'),
     path('passwordchange/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),
     path('password_change/', views.custom_password_change, name='password_change'),
+    
 
+    # URL for lockout mechanism and contact support 
     path('lockout/',views.lockOut, name="lockout"),
     path("contactsupport/", contact_support, name="contactsupport"),
 
+
+    # URL for OTP and Sign up email activation link
     path('resend-otp/', views.resend_otp, name='resend_otp'),  
-    path('verify-email/<uidb64>/<token>/', views.verify_email, name='verify_email'),
+    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('email-verification-success/', TemplateView.as_view(template_name='logIn/email_verification_success.html'), name='email_verification_success'),
+
 
 ]

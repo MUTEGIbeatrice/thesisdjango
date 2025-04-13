@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 
 
     #my apps
-    'logIn',
+    'logIn', # Custom app for user authentication
     'sslserver',
 
     
@@ -61,21 +61,20 @@ INSTALLED_APPS = [
     'captcha',
     'django_extensions',
     
-    'axes',
-    'django_otp',
+    'axes', # App for tracking login attempts
+    'django_otp', # App for two-factor authentication
     'django_otp.plugins.otp_totp',  # TOTP-based OTPs (Google Authenticator) support
     'django_otp.plugins.otp_static',  # Static backup tokens
-    'two_factor',
-    'two_factor.plugins.email',  
+    'django_otp.plugins.otp_email',  # For email-based OTP
+    'two_factor', # App for two-factor authentication
+    'two_factor.plugins.email',  # App for two-factor authentication
+      
 
 ]
 
 # Google reCAPTCHA Settings
 RECAPTCHA_PUBLIC_KEY = '6LcMq_QqAAAAAJ9dVrS7ZZ0iGnPUrxqcOusPufqw'
 RECAPTCHA_PRIVATE_KEY = '6LcMq_QqAAAAAIFJ1dFt84qMZAC__SYUzAagJO91'
-#RECAPTCHA_SECRET_KEY = '6LcMq_QqAAAAAIFJ1dFt84qMZAC__SYUzAagJO91'
-
-# Optional configuration for reCAPTCHA
 RECAPTCHA_REQUIRED_SCORE = 0.85  # Adjustable
 RECAPTCHA_USE_SSL = True
 
@@ -270,8 +269,6 @@ AXES_LOCKOUT_CALLABLE = 'logIn.utils.custom_lockout_callable'
 AXES_LOCKOUT_PARAMETERS = ['ip_address','username'] #Tracks both ip address and username
 
 AXES_RESET_ON_SUCCESS = True #Resets counter after successful login
-
-AXES_ONLY_USER_FAILURES = False  # Track both username and IP failures
 
 AXES_ENABLE_ADMIN = False  # Enable Axes in Django admin panel
 

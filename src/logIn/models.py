@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User #IMPORTING USER MODEL
 from django.utils import timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 import logging
 
 
@@ -9,6 +11,12 @@ import logging
 
 #USER PROFILE IS AN EXTENSION TO dJANGO'S MODEL OF USERS' PROFILE
 class UserProfile(models.Model):
+    """
+    Extends the default User model with additional fields:
+    - otp: One-time password for 2FA
+    - otp_expiry: When the OTP expires  
+    - last_password_change: Track password changes
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     otp_secret = models.CharField(max_length=32, blank=True, null=True)  # Store OTP secret
     otp = models.CharField(max_length=6, blank=True, null=True)  # Temporary storage for OTP
