@@ -5,17 +5,68 @@ from django.conf import settings
 from .models import UserProfile
 from django.utils import timezone
 from datetime import timedelta 
+from django.core.cache import cache
+from django.utils import timezone
 
 
 
+# Progressive lockout settings
+LOCKOUT_STAGES = [
+    (3, 5),    # 3 attempts -> 5 min lockout
+    (6, 10),   # 6 attempts -> 10 min lockout
+    (9, 15),   # 9 attempts -> 15 min lockout
+    (12, 30),  # 12 attempts -> 30 min lockout
+    (15, 60)   # 15+ attempts -> 60 min lockout
+]
+
+def get_lockout_timeout(failed_attempts):
+    """Calculate lockout timeout based on failed attempts"""
+    for attempts, minutes in LOCKOUT_STAGES:
+        if failed_attempts <= attempts:
+            return timedelta(minutes=minutes)
+    return timedelta(minutes=60)  # Default max timeout
+
+def log_lockout_event(username, ip_address, failed_attempts, timeout):
+    """Log lockout events for admin monitoring"""
+    from .models import LockoutLog
+    LockoutLog.objects.create(
+        username=username,
+        ip_address=ip_address,
+        failed_attempts=failed_attempts,
+        timeout_minutes=timeout.seconds // 60,
+        timestamp=timezone.now()
+    )
 
 # Lockout
 def custom_lockout_callable(request, credentials):
     """
-    Custom lockout function for Django Axes.
-    Redirects the user to a lockout page when their account is locked.
+    Progressive lockout function with escalating timeouts
     """
-    return render(request, 'logIn/lockout.html', status=403)
+    username = credentials.get('username', '')
+    ip_address = request.META.get('REMOTE_ADDR', '')
+    cache_key = f'failed_attempts_{username}'
+    
+    # Get current failed attempts
+    failed_attempts = cache.get(cache_key, 0) + 1
+    cache.set(cache_key, failed_attempts)
+    
+    # Calculate timeout
+    timeout = get_lockout_timeout(failed_attempts)
+    
+    # Log the lockout event
+    log_lockout_event(username, ip_address, failed_attempts, timeout)
+    
+    # Set lockout in cache
+    lockout_key = f'lockout_{username}'
+    cache.set(lockout_key, True, timeout=timeout.seconds)
+    
+    context = {
+        'timeout_minutes': timeout.seconds // 60,
+        'failed_attempts': failed_attempts
+    }
+    return render(request, 'logIn/lockout.html', context, status=403)
+
+
 
 
 # Generate OTP secret for the user

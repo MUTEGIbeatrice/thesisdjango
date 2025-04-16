@@ -26,6 +26,10 @@ from django.core.mail import send_mail #Sending alert mails
 from django.dispatch import receiver
 from axes.signals import user_locked_out
 from django.contrib.auth.views import PasswordChangeView
+from django.contrib.admin.views.decorators import staff_member_required
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse, HttpResponse
+import time
 from .utils import *
 from .utils import generate_otp_secret, send_otp
 from django.contrib.auth.tokens import default_token_generator
@@ -39,6 +43,12 @@ from django.db import transaction
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
+from django.views.decorators.http import require_GET
+from django.utils import timezone
+from .models import LockoutLog
+from django.db.models import Count
+import http.client
+import json
 
 
 
@@ -51,6 +61,7 @@ logger = logging.getLogger(__name__)
 
 # Get user model
 User = get_user_model()
+
 
 
 
@@ -223,6 +234,7 @@ def verify_recaptcha(request, recaptcha_response):
 #Home page view
 @login_required(login_url='login')   # RESTRICTION ON UNAUTHENTICATED USERS AND DERIVED FROM 'IMPORT LOGIN_REQUIRED'
 def home(request):
+    #Enforce Password Expiry
     password_age = (now() - request.user.date_joined).days
 
     if password_age > settings.PASSWORD_EXPIRE_DAYS :
@@ -247,55 +259,51 @@ def home(request):
 # SIGN UP VIEW (uses email verification to prevent bots)
 def signup(request):
     if request.method == 'POST':
-        # Process form submission
+        # Instantiate form with POST data but do not validate yet
         form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            try:
-                # Use atomic transaction to ensure all operations succeed or fail together
-                with transaction.atomic():
-                    # Create user but don't save to DB yet
-                    user = form.save(commit=False)
-                    # Mark user as inactive until email is verified
-                    user.is_active = False  
-                    # Save user to database
-                    user.save()  
-                    
-                    # Create associated user profile if it doesn't exist
-                    if not hasattr(user, 'userprofile'):
-                        UserProfile.objects.create(user=user)
-                    
-                    # Send verification email
-                    try:
-                        verify_email(request, user, form.cleaned_data.get('email'))
-                        messages.success(request, 
-                            f'Dear {user.username},' 
-                            f'To complete your registration, please check your email {form.cleaned_data.get("email")} '
-                            f'(including spam folder) for the activation link.')
+        try:
+            # Create user instance but do not save yet
+            user = form.save(commit=False)
+            # Mark user as inactive until email is verified
+            user.is_active = False
+            # Save user to database early to avoid unsaved user warning
+            user.save()
 
-                    except Exception as e:
-                        logger.error(f"Failed to send verification email: {str(e)}")
-                        messages.error(request, "Account created but failed to send verification email. Please contact support.")
-                    
-                    
-            except Exception as e:
-                # Log detailed error for debugging
-                logger.error(f"Error during signup: {str(e)}", exc_info=True)
-                # User-friendly error message
-                messages.error(request, 
-                    "An error occurred during registration. Please try again.")
-                return render(request, "logIn/signup.html", {"form": form})
+            # Now validate the form with saved user instance
+            if form.is_valid():
+                # Create associated user profile if it doesn't exist
+                if not hasattr(user, 'userprofile'):
+                    UserProfile.objects.create(user=user)
 
-        else:
-            # Log form validation errors
-            logger.error(f"Form validation failed: {form.errors}")
-            # Display each error to user
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f"{field}: {error}")
+                # Send verification email
+                try:
+                    verify_email(request, user, form.cleaned_data.get('email'))
+                    messages.success(request,
+                        f'Dear {user.username},'
+                        f'To complete your registration, please check your email {form.cleaned_data.get("email")}'
+                        f'(including spam and promotion folder) for the activation link.')
+                except Exception as e:
+                    logger.error(f"Failed to send verification email: {str(e)}")
+                    messages.error(request, "Account created but failed to send verification email. Please contact support.")
+
+            else:
+                # Log form validation errors
+                logger.error(f"Form validation failed: {form.errors}")
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        messages.error(request, f"{field}: {error}")
+
+        except Exception as e:
+            # Log detailed error for debugging
+            logger.error(f"Error during signup: {str(e)}", exc_info=True)
+            messages.error(request,
+                "An error occurred during registration. Please try again.")
+            return render(request, "logIn/signup.html", {"form": form})
+
     else:
         # GET request - show empty form
         form = CustomUserCreationForm()
-        
+
     return render(request, "logIn/signup.html", {"form": form})
 
 
@@ -406,7 +414,7 @@ def logOut(request):
     return redirect('login')  # Redirect to the login page after logout
 
 
-
+#for contact support
 def contact_support(request):
     if request.method == "POST":
        
@@ -445,6 +453,76 @@ def contact_support(request):
 def lockOut(request):
     messages.success(request, "Too many failed login attempts. Your account is locked.")
     return render(request, 'logIn/lockout.html')
+
+
+
+# Lockout statistics view
+#@staff_member_required  #To be accessible by admin staff members
+def lockout_stats(request):
+    # Get top 10 most locked out users
+    top_locked_users = LockoutLog.objects.values('username').annotate(
+        total_lockouts=Count('id')
+    ).order_by('-total_lockouts')[:10]
+
+    # Get lockout counts by hour
+    hourly_lockouts = LockoutLog.objects.extra(
+        {'hour': "strftime('%%Y-%%m-%%d %%H:00:00', timestamp)"}
+    ).values('hour').annotate(
+        count=Count('id')
+    ).order_by('hour')
+
+    # Get detailed lockout records with additional info
+    detailed_lockouts_raw = LockoutLog.objects.values(
+        'username', 'timestamp', 'ip_address'
+    ).order_by('-timestamp')
+
+    detailed_lockouts = []
+    for record in detailed_lockouts_raw:
+        ip_address = record.get('ip_address')
+        user_agent = 'Unknown'  # user_agent field does not exist in model
+        timestamp = record.get('timestamp')
+        if timestamp and timezone.is_naive(timestamp):
+            timestamp = timezone.make_aware(timestamp, timezone.get_current_timezone())
+
+        # Parse OS and device type from user agent
+        os_info = "Unknown OS"
+        device_type = "Unknown Device"
+        # Since user_agent is unknown, skip detailed parsing
+
+        # Get location from IP using ip-api.com
+        location = "Unknown Location"
+        try:
+            conn = http.client.HTTPConnection("ip-api.com")
+            conn.request("GET", f"/json/{ip_address}")
+            res = conn.getresponse()
+            data = res.read()
+            location_data = json.loads(data)
+            if location_data.get('status') == 'success':
+                city = location_data.get('city', '')
+                region = location_data.get('regionName', '')
+                country = location_data.get('country', '')
+                location = f"{city}, {region}, {country}".strip(', ')
+        except Exception:
+            location = "Location lookup failed"
+
+        detailed_lockouts.append({
+            'username': record.get('username'),
+            'timestamp': timestamp,
+            'ip_address': ip_address,
+            'user_agent': user_agent,
+            'os_info': os_info,
+            'device_type': device_type,
+            'location': location,
+        })
+
+    context = {
+        'total_lockouts': LockoutLog.objects.count(),
+        'top_locked_users': top_locked_users,
+        'hourly_lockouts': hourly_lockouts,
+        'detailed_lockouts': detailed_lockouts,
+    }
+    return render(request, 'logIn/lockout_stats.html', context)
+
 
 
 

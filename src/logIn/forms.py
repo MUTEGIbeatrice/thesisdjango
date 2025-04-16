@@ -35,6 +35,20 @@ class CustomUserCreationForm(UserCreationForm):
 
         return user
 
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password1")
+        user = self.instance
+
+        # Validate password with user instance only if user is saved (has pk)
+        if user.pk:
+            from django.contrib.auth.password_validation import validate_password
+            try:
+                validate_password(password, user)
+            except ValidationError as e:
+                self.add_error('password1', e)
+        return cleaned_data
+
 
     #checks if email is unique 
     def clean_email(self):
@@ -50,6 +64,16 @@ class CustomUserCreationForm(UserCreationForm):
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
             raise ValidationError(_("Passwords don't match"))
+
+        # Validate password strength only if user instance is saved
+        user = self.instance
+        if user.pk:
+            from django.contrib.auth.password_validation import validate_password
+            try:
+                validate_password(password2, user)
+            except ValidationError as e:
+                raise ValidationError(e)
+
         return password2
     
 

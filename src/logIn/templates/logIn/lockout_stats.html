@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lockout Statistics</title>
+
+  <!-- Stylesheet CSS -->
+  <style>
+    *,
+    *:before,
+    *:after {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #080710;
+      overflow-x: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Background shapes */
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .shape:nth-child(1) {
+      background: linear-gradient(45deg, #ff512f, #f09819);
+      width: 350px;
+      height: 350px;
+      top: -150px;
+      left: -200px;
+    }
+
+    .shape:nth-child(2) {
+      background: linear-gradient(45deg, #89216b, #da4453);
+      width: 300px;
+      height: 300px;
+      top: 20%;
+      left: 10%;
+    }
+
+    .shape:nth-child(3) {
+      background: linear-gradient(45deg, #ff0099, #493240);
+      width: 180px;
+      height: 180px;
+      bottom: 10%;
+      right: 5%;
+    }
+
+    .shape:nth-child(4) {
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      width: 220px;
+      height: 220px;
+      top: 60%;
+      right: 30%;
+    }
+
+    /* Header styling */
+    .majorheader {
+      text-align: center;
+      padding: 20px;
+      color:  rgb(193, 195, 196);
+    }
+
+    .majorheader h2 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    /* Container */
+    .container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 12px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      width: 90%;
+      max-width: 1200px;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      overflow-y: auto;
+    }
+
+    .container h3 {
+      color:  #f0eaea;
+      font-size: 24px;
+      margin-bottom: 20px;
+      width: 100%;
+      text-align: left;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    th, td {
+      border: 1px solid #999;
+      padding: 10px;
+      text-align: left;
+      color: #f0eaea;
+    }
+
+    th {
+      background-color: #333;
+    }
+
+    
+.button {
+  padding: 12px 30px;
+  background:rgba(164, 170, 172, 0.464);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: default;
+  transition: 0.3s;
+  width: fit-content;
+  margin-top: 20px; 
+  display: block;
+}
+
+.button:hover {
+  background: hsla(180, 35%, 76%, 0.855);
+  text-decoration: none;
+  
+}
+
+    /* Footer */
+    .majorfooter {
+      text-align: center;
+      color: #b5b5b5;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Background shapes -->
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  {% include 'logIn/messages.html' %} <!-- INHERITANCE OF THE PAGE CONTENT -->
+
+  <!-- Main container -->
+  <div class="container">
+    <h1>Lockout Statistics</h1>
+
+    <h3>Top Locked Users</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Lockouts</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in top_locked_users %}
+        <tr>
+          <td>{{ user.username }}</td>
+          <td>{{ user.total_lockouts }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="2">No locked users found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3>Lockouts by Hour</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Hour</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for hour in hourly_lockouts %}
+        <tr>
+          <td>{{ hour.hour }}</td>
+          <td>{{ hour.count }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="2">No lockouts found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3>Detailed Lockout Records</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Lock Date</th>
+          <th>IP Address</th>
+          <th>Location</th>
+          <th>Operating System</th>
+          <th>Device Type</th>
+          <th>User Agent</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in detailed_lockouts %}
+        <tr>
+          <td>{{ record.username }}</td>
+          <td>{{ record.timestamp|date:"Y-m-d H:i:s" }}</td>
+          <td>{{ record.ip_address }}</td>
+          <td>{{ record.location }}</td>
+          <td>{{ record.os_info }}</td>
+          <td>{{ record.device_type }}</td>
+          <td style="word-break: break-word;">{{ record.user_agent }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7">No detailed lockout records found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <a href="{% url 'home' %}">
+      <button type="button" class="button">Home</button>
+  </a>  
+
+    <!-- Logout Form -->
+    <form method="POST" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button type="submit" class="button">Logout</button>
+    </form>
+  </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="majorfooter">
+    <p>&copy; <script>document.write(new Date().getFullYear())</script>. All rights reserved.</p>
+  </div>
+
+</body>
+
+</html>

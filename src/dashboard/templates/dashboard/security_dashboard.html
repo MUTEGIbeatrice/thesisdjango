@@ -1,0 +1,397 @@
+<!--MAIN TEMPLATE HTML AND CSS TO MINIMIZE CODE REDUNDANCY WHEN CREATING OTHER PAGES-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Security Dashboard</title>
+
+  <!-- Stylesheet CSS -->
+  <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+  
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #080710;
+        color: #f0f0f0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+      }
+  
+      /* Background shapes */
+      .background {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+  
+      .shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.4;
+        filter: blur(20px);
+      }
+  
+      .shape:nth-child(1) {
+        background: linear-gradient(45deg, #ff512f, #f09819);
+        width: 300px;
+        height: 300px;
+        top: -100px;
+        left: -100px;
+      }
+  
+      .shape:nth-child(2) {
+        background: linear-gradient(45deg, #89216b, #da4453);
+        width: 250px;
+        height: 250px;
+        top: 15%;
+        left: 5%;
+      }
+  
+      .shape:nth-child(3) {
+        background: linear-gradient(45deg, #ff0099, #493240);
+        width: 150px;
+        height: 150px;
+        bottom: 10%;
+        right: 5%;
+      }
+  
+      .shape:nth-child(4) {
+        background: linear-gradient(45deg, #00c6ff, #0072ff);
+        width: 200px;
+        height: 200px;
+        top: 55%;
+        right: 20%;
+      }
+  
+      .container {
+        width: 95%;
+        max-width: 1000px;
+        margin: 60px auto 80px;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      }
+  
+      .container h2 {
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+  
+      .container p {
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 30px;
+        color: #ccc;
+      }
+  
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+        margin-bottom: 40px;
+      }
+  
+      .col-md-4 {
+        flex: 1 1 30%;
+      }
+  
+      .card {
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+  
+      .card h5 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+  
+      .card h2 {
+        font-size: 28px;
+        font-weight: 700;
+      }
+  
+      .bg-primary { background-color: #007bff88; }
+      .bg-danger { background-color: #dc354588; }
+      .bg-success { background-color: #28a74588; }
+  
+      .chart-container {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+  
+      .chart-container h3 {
+        margin-bottom: 15px;
+        font-size: 22px;
+        color: #fff;
+        text-align: center;
+      }
+  
+      canvas {
+        width: 100% !important;
+        max-height: 400px;
+      }
+    .button {
+      padding: 12px 30px;
+      background:rgba(164, 170, 172, 0.464);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: default;
+      transition: 0.3s;
+      width: fit-content;
+      margin-top: 20px; /* Adjust spacing from above text */
+      display: block;
+}
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+
+
+.button:hover {
+  background: hsla(180, 35%, 76%, 0.855);
+}
+
+  
+      .majorfooter {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        font-size: 14px;
+        color: #aaa;
+        background: rgba(0, 0, 0, 0.4);
+      }
+  
+      @media (max-width: 768px) {
+        .row {
+          flex-direction: column;
+          align-items: center;
+        }
+  
+        .col-md-4 {
+          width: 100%;
+          max-width: 90%;
+        }
+  
+        .container {
+          padding: 20px;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  
+
+<body>
+  <!-- Background shapes -->
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  {% include 'logIn/messages.html' %}
+
+  <!-- Main container -->
+  <div class="container">
+    <h2>Brute Force Attack Prevention Dashboard</h2>
+    <p class="text-muted">Showing data for {{ security_metrics.time_period }}</p>
+    
+    <!-- Security Metrics Summary -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5>Total Attack Attempts</h5>
+                    <h2>{{ security_metrics.total_attempts }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-danger">
+                <div class="card-body">
+                    <h5>Blocked Attempts</h5>
+                    <h2>{{ security_metrics.blocked_attempts }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5>Prevention Success Rate</h5>
+                    <h2>{{ security_metrics.success_rate }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visualization Section -->
+    <div class="chart-container">
+        <h3>Failed Login Heatmap</h3>
+        <canvas id="heatmapChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h3>Lockout Frequencies by IP</h3>
+        <canvas id="ipChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h3>CAPTCHA Fail Rates</h3>
+        <canvas id="captchaChart"></canvas>
+    </div>
+
+    <script>
+        // Failed Login Heatmap
+        const heatmapCtx = document.getElementById('heatmapChart');
+        const heatmapData = JSON.parse('{{ heatmap_data|escapejs }}');
+        new Chart(heatmapCtx, {
+            type: 'line',
+            data: {
+                labels: heatmapData.map(item => item.date),
+                datasets: [{
+                    label: 'Failed Logins',
+                    data: heatmapData.map(item => item.count),
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                    tension: 0.1,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // IP Lockout Chart
+        const ipCtx = document.getElementById('ipChart');
+        const ipThreatsData = JSON.parse('{{ ip_threats|escapejs }}');
+        new Chart(ipCtx, {
+            type: 'bar',
+            data: {
+                labels: ipThreatsData.map(item => item.ip_address),
+                datasets: [{
+                    label: 'Lockout Attempts',
+                    data: ipThreatsData.map(item => item.attempts),
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // CAPTCHA Fail Rate Chart
+        const captchaCtx = document.getElementById('captchaChart');
+        const captchaFailRate = parseInt('{{ security_metrics.captcha_fail_rate|cut:"%" }}');
+        new Chart(captchaCtx, {
+            type: 'pie',
+            data: {
+                labels: ['CAPTCHA Failed', 'Other Failures'],
+                datasets: [{
+                    data: [captchaFailRate, 100 - captchaFailRate],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+
+    <!-- IP Threats Details Table -->
+    <div class="chart-container">
+      <h3>IP Threats Details</h3>
+      <table style="width: 100%; border-collapse: collapse; color: #f0f0f0;">
+        <thead>
+          <tr style="background-color: #333;">
+            <th style="border: 1px solid #999; padding: 8px;">IP Address</th>
+            <th style="border: 1px solid #999; padding: 8px;">Attempts</th>
+            <th style="border: 1px solid #999; padding: 8px;">Last Attempt</th>
+            <th style="border: 1px solid #999; padding: 8px;">Location</th>
+            <th style="border: 1px solid #999; padding: 8px;">Operating System</th>
+            <th style="border: 1px solid #999; padding: 8px;">Device Type</th>
+            <th style="border: 1px solid #999; padding: 8px;">User Agent</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ip in ip_threats %}
+          <tr style="border-bottom: 1px solid #555;">
+            <td style="border: 1px solid #999; padding: 8px;">{{ ip.ip_address }}</td>
+            <td style="border: 1px solid #999; padding: 8px;">{{ ip.attempts }}</td>
+            <td style="border: 1px solid #999; padding: 8px;">{{ ip.last_attempt|date:"Y-m-d H:i:s" }}</td>
+            <td style="border: 1px solid #999; padding: 8px;">{{ ip.location }}</td>
+            <td style="border: 1px solid #999; padding: 8px;">{{ ip.os_info }}</td>
+            <td style="border: 1px solid #999; padding: 8px;">{{ ip.device_type }}</td>
+            <td style="border: 1px solid #999; padding: 8px; word-break: break-word;">{{ ip.user_agent }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" style="text-align: center; padding: 8px;">No IP threats found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+   
+    <div class="button-row">
+      <a href="{% url 'home' %}">
+        <button type="button" class="button">Home</button>
+      </a>  
+    
+      <!-- Logout Form -->
+      <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="button">Logout</button>
+      </form>
+    </div>
+ </div>
+    <!-- Footer -->
+    <div class="majorfooter">
+      <p>&copy; <script>document.write(new Date().getFullYear())</script>. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>

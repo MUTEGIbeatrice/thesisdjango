@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     #my apps
     'logIn', # Custom app for user authentication
     'sslserver',
+    'dashboard', #Attack Analytics Dashboard
 
     
     'django_password_validators',

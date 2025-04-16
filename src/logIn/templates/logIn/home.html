@@ -161,16 +161,24 @@
   </div>
 
   {% include 'logIn/messages.html' %} <!-- INHERITANCE OF THE PAGE CONTENT -->
-
+  {% csrf_token %}
   <!-- Header -->
   <div class="majorheader">
     <h2>Welcome to the Home Page</h2>
   </div>
 
   <!-- Main container -->
-  <div class="container">
+  <div class="container"> 
+    
     <h3>Welcome, {{ user.username }}!</h3> <!--to show the username's username -->
     <p>You have successfully logged in to your account.</p>
+     
+    <a href="{% url 'security_dashboard' %}">
+      <button type="button" class="button">Security Dashboard</button>
+    </a>  
+    <a href="{% url 'lockout_stats' %}">
+      <button type="button" class="button">Lockout Statistics</button>
+     </a> 
 
     <!-- Logout Form -->
     <form method="POST" action="{% url 'logout' %}">

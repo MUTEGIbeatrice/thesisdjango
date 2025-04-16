@@ -1,4 +1,5 @@
 from django.urls import path, include
+from dashboard.views import security_dashboard
 from django.contrib import admin
 from . import views
 from django.contrib.auth import views as auth_views
@@ -41,6 +42,8 @@ urlpatterns = [
     path('resend-otp/', views.resend_otp, name='resend_otp'),  
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('email-verification-success/', TemplateView.as_view(template_name='logIn/email_verification_success.html'), name='email_verification_success'),
+    path('admin/lockout-stats/', views.lockout_stats, name='lockout_stats'),
+    path('dashboard/security-dashboard/', security_dashboard, name='security_dashboard'),
 
 
 ]
