@@ -92,6 +92,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'axes.middleware.AxesMiddleware',
     'django_otp.middleware.OTPMiddleware',
+    'logIn.middleware.LockoutLoggingMiddleware',
+
     
 ]
 

@@ -67,8 +67,8 @@ User = get_user_model()
 
 # logIn  REQUEST, AUTHENTICATION AND RESTRICTION TO AN ALREADY AUTHENTICATED USER
 # Uses CAPTCHAs to prevent bots.
-@ratelimit(key='ip', rate='10/m', method='POST', block=True)  # Account Lockout or Cooldown
-@unauthenticated_user  # Prevent logged-in users from accessing the login page
+@ratelimit(key='ip', rate='10/m', method='POST', block=True)
+@unauthenticated_user
 def logIn(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -81,11 +81,41 @@ def logIn(request):
             messages.error(request, "Please complete the CAPTCHA to proceed.")
             return render(request, "logIn/login.html")
 
-        # Account lockout check
+        # Account lockout check by username
         failed_attempts = cache.get(f'failed_attempts_{username}', 0)
+        ip = request.META.get('REMOTE_ADDR')
+        failed_attempts_ip = cache.get(f'failed_attempts_ip_{ip}', 0)
+
+        # Check lockout by username
         if failed_attempts >= 3:
             logger.warning(f'User {username} locked out due to multiple failed login attempts')
             messages.error(request, "Too many failed login attempts. Your account is locked.")
+            send_lockout_email(username)
+
+            # Log lockout with user agent, os info, device type
+            ip_address = request.META.get('REMOTE_ADDR')
+            user_agent = request.META.get('HTTP_USER_AGENT', '')
+            import user_agents
+            ua = user_agents.parse(user_agent)
+            os_info = f"{ua.os.family} {ua.os.version_string}"
+            device_type = 'Mobile' if ua.is_mobile else 'Tablet' if ua.is_tablet else 'PC' if ua.is_pc else 'Other'
+
+            from .models import LockoutLog
+            LockoutLog.objects.create(
+                username=username,
+                ip_address=ip_address,
+                user_agent=user_agent,
+                os_info=os_info,
+                device_type=device_type,
+                is_simulation=False
+            )
+
+            return redirect('lockout')
+
+        # Check lockout by IP
+        if failed_attempts_ip >= 10:
+            logger.warning(f'IP {ip} locked out due to multiple failed login attempts')
+            messages.error(request, "Too many failed login attempts from your IP address. Access temporarily blocked.")
             return redirect('lockout')
 
         # User authentication
@@ -94,8 +124,10 @@ def logIn(request):
         if user:
             if not user.check_password(password):
                 failed_attempts += 1
+                failed_attempts_ip += 1
                 cache.set(f'failed_attempts_{username}', failed_attempts, timeout=900)
-                logger.warning(f'Invalid credentials for user {username}')
+                cache.set(f'failed_attempts_ip_{ip}', failed_attempts_ip, timeout=900)
+                logger.warning(f'Invalid credentials for user {username} from IP {ip}')
                 messages.error(request, "Invalid Credentials. Please try again.")
                 return render(request, "logIn/login.html")
 
@@ -112,22 +144,22 @@ def logIn(request):
                     from django.utils import timezone
                     otp_code = generate_otp_secret(user)
                     send_otp(user.email, otp_code)
-                    
+
                     # Clear any existing OTP first
                     user.userprofile.otp = None
                     user.userprofile.otp_expiry = None
                     user.userprofile.save()
-                    
+
                     # Set new OTP with proper timezone handling
                     user.userprofile.otp = otp_code
                     user.userprofile.otp_expiry = timezone.localtime(timezone.now()) + timedelta(minutes=10)
                     user.userprofile.save()
-                    
+
                     logger.info(f"Generated OTP for {user.username} at {timezone.localtime(timezone.now())}, expires at {user.userprofile.otp_expiry}")
-                    
+
                     messages.info(request, "An OTP has been sent to your email.")
                     return render(request, "logIn/login.html", {"username": username, "resend": True})
-                
+
                 if otp != user.userprofile.otp:  # Entered OTP does not match
                     failed_attempts += 1
 
@@ -144,15 +176,56 @@ def logIn(request):
             messages.success(request, 'Login Successful')
             login(request, user)
             cache.delete(f'failed_attempts_{username}')
+            cache.delete(f'failed_attempts_ip_{ip}')
             request.session.set_expiry(settings.SESSION_COOKIE_AGE)
             return redirect('home')
 
         else:
             failed_attempts += 1
+            failed_attempts_ip += 1
             cache.set(f'failed_attempts_{username}', failed_attempts, timeout=600)
-            logger.warning(f'Failed login attempt for user {username}')
+            cache.set(f'failed_attempts_ip_{ip}', failed_attempts_ip, timeout=600)
+            logger.warning(f'Failed login attempt for user {username} from IP {ip}')
             messages.error(request, "Invalid Credentials. Please try again.")
             return render(request, "logIn/login.html")
+
+    return render(request, "logIn/login.html")
+
+
+
+def send_lockout_email(username):
+    from django.core.mail import send_mail
+    from django.conf import settings
+    try:
+        user = User.objects.get(username=username)
+        send_mail(
+            subject="Account Locked Due to Multiple Failed Login Attempts",
+            message=f"Dear {user.username if user else 'User Unknown'},\n\nYour account has been temporarily locked due to multiple failed login attempts. Please try again after some time or contact support if this wasn't you.",
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[user.email] if user else [settings.EMAIL_HOST_USER],
+            fail_silently=True,
+        )
+        logger.info(f"Lockout notification email sent to {user.email if user else 'admin'}")
+    except User.DoesNotExist:
+        logger.warning(f"Attempted to send lockout email to non-existent user {username}")
+
+            # Login successful
+        logger.info(f'User {username} logged in successfully')
+        messages.success(request, 'Login Successful')
+        login(request, user)
+        cache.delete(f'failed_attempts_{username}')
+        cache.delete(f'failed_attempts_ip_{ip}')
+        request.session.set_expiry(settings.SESSION_COOKIE_AGE)
+        return redirect('home')
+
+    else:
+        failed_attempts += 1
+        failed_attempts_ip += 1
+        cache.set(f'failed_attempts_{username}', failed_attempts, timeout=600)
+        cache.set(f'failed_attempts_ip_{ip}', failed_attempts_ip, timeout=600)
+        logger.warning(f'Failed login attempt for user {username} from IP {ip}')
+        messages.error(request, "Invalid Credentials. Please try again.")
+        return render(request, "logIn/login.html")
 
     return render(request, "logIn/login.html")
 
@@ -420,8 +493,8 @@ def contact_support(request):
        
         form = SupportMessageForm(request.POST)
         if form.is_valid():
-            username = request.user.username if request.user.is_authenticated else form.cleaned_data['nameGuest']
-            email = request.user.email if request.user.is_authenticated else form.cleaned_data['emailGuest']
+            username = request.user.username if request.user.is_authenticated else form.cleaned_data['username']
+            email = request.user.email if request.user.is_authenticated else form.cleaned_data['email']
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             admin_email = "djangoapp2025@gmail.com"  # Django admin's email
@@ -440,6 +513,10 @@ def contact_support(request):
 
             messages.success(request, "Your message has been sent.")
             return redirect("login")  # Redirect after success
+        else:
+            # Form is invalid, render with errors
+            messages.error(request, "Please correct the errors below.")
+            return render(request, "logIn/contactsupport.html", {"form": form})
 
     else:
         # Prepopulate the form with user data if authenticated
@@ -458,7 +535,12 @@ def lockOut(request):
 
 # Lockout statistics view
 #@staff_member_required  #To be accessible by admin staff members
+@login_required
 def lockout_stats(request):
+    if not request.user.is_staff:
+        messages.error(request, "You do not have permission to access the lockout statistics.")
+        return redirect('home')
+
     # Get top 10 most locked out users
     top_locked_users = LockoutLog.objects.values('username').annotate(
         total_lockouts=Count('id')
@@ -473,23 +555,22 @@ def lockout_stats(request):
 
     # Get detailed lockout records with additional info
     detailed_lockouts_raw = LockoutLog.objects.values(
-        'username', 'timestamp', 'ip_address'
+        'username', 'timestamp', 'ip_address', 'user_agent', 'os_info', 'device_type', 'is_simulation'
     ).order_by('-timestamp')
 
     detailed_lockouts = []
     for record in detailed_lockouts_raw:
         ip_address = record.get('ip_address')
-        user_agent = 'Unknown'  # user_agent field does not exist in model
+        user_agent = record.get('user_agent') or 'Unknown'
         timestamp = record.get('timestamp')
+        is_simulation = record.get('is_simulation', False)  # Check if it's a simulation
+
         if timestamp and timezone.is_naive(timestamp):
             timestamp = timezone.make_aware(timestamp, timezone.get_current_timezone())
 
-        # Parse OS and device type from user agent
-        os_info = "Unknown OS"
-        device_type = "Unknown Device"
-        # Since user_agent is unknown, skip detailed parsing
+        os_info = record.get('os_info') or "Unknown OS"
+        device_type = record.get('device_type') or "Unknown Device"
 
-        # Get location from IP using ip-api.com
         location = "Unknown Location"
         try:
             conn = http.client.HTTPConnection("ip-api.com")
@@ -513,6 +594,7 @@ def lockout_stats(request):
             'os_info': os_info,
             'device_type': device_type,
             'location': location,
+            'is_simulation': is_simulation,  # Include simulation status
         })
 
     context = {
@@ -522,10 +604,3 @@ def lockout_stats(request):
         'detailed_lockouts': detailed_lockouts,
     }
     return render(request, 'logIn/lockout_stats.html', context)
-
-
-
-
-
-
-

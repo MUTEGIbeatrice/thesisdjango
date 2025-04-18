@@ -179,7 +179,9 @@
     <a href="{% url 'lockout_stats' %}">
       <button type="button" class="button">Lockout Statistics</button>
      </a> 
-
+     <a href="{% url 'contactsupport' %}">
+      <button type="button" class="button">Contact Support</button>
+    </a>
     <!-- Logout Form -->
     <form method="POST" action="{% url 'logout' %}">
       {% csrf_token %}

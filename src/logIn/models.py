@@ -12,7 +12,11 @@ import logging
 class LockoutLog(models.Model):
     username = models.CharField(max_length=150)
     ip_address = models.GenericIPAddressField()
+    user_agent = models.TextField(blank=True, null=True)
+    os_info = models.CharField(max_length=100, blank=True, null=True)
+    device_type = models.CharField(max_length=100, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+    is_simulation = models.BooleanField(default=False)  # Flag to mark simulation events
 
     def __str__(self):
         return f"{self.username} locked out at {self.timestamp} from {self.ip_address}"

@@ -32,9 +32,8 @@ def log_lockout_event(username, ip_address, failed_attempts, timeout):
     LockoutLog.objects.create(
         username=username,
         ip_address=ip_address,
-        failed_attempts=failed_attempts,
-        timeout_minutes=timeout.seconds // 60,
-        timestamp=timezone.now()
+        timestamp=timezone.now(),
+        is_simulation=False
     )
 
 # Lockout

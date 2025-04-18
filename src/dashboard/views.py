@@ -51,7 +51,7 @@ def security_dashboard(request):
 
         # Get most recent user agent for this IP
         latest_log = LockoutLog.objects.filter(ip_address=ip_address).order_by('-timestamp').first()
-        user_agent = latest_log.user_agent if latest_log and hasattr(latest_log, 'user_agent') else 'Unknown'
+        user_agent = (latest_log.user_agent or 'Unknown') if latest_log else 'Unknown'
 
         # Parse OS and device type from user agent
         os_info = "Unknown OS"

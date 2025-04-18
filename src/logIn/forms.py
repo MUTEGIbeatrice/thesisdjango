@@ -90,22 +90,12 @@ class SupportMessageForm(forms.Form):
     username = forms.CharField(
         max_length=100, 
         required=True,
-        widget=forms.TextInput(attrs={'readonly': 'readonly'})  # Read-only for security
+        widget=forms.TextInput(attrs={'placeholder': 'Enter your username'})  # Allow input
     )
     email = forms.CharField(
         max_length=100, 
         required=True,
-        widget=forms.TextInput(attrs={'readonly': 'readonly'})  # Read-only for security
-    )
-    name = forms.CharField(
-        max_length=100, 
-        required=True,
-        widget=forms.TextInput(attrs={'placeholder': 'name'})  
-    )
-    emailGuest = forms.CharField(
-        max_length=100, 
-        required=True,
-        widget=forms.TextInput(attrs={'placeholder': 'email'})  
+        widget=forms.TextInput(attrs={'placeholder': 'Enter your email'})  # Allow input
     )
     subject = forms.CharField(
         max_length=100, 
