@@ -12433,3 +12433,437 @@ AXES: User login failed, running database handler for failure.
 AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 05:15:45.812059+00:00
 AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
 AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 19, in _wrapped
+    ratelimited = is_ratelimited(request=request, group=group, fn=fn,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\core.py", line 153, in is_ratelimited
+    usage = get_usage(request, group, fn, key, rate, method, increment)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\core.py", line 208, in get_usage
+    elif key in _SIMPLE_KEYS:
+         ^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Forbidden (Permission denied): /login/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 26, in _wrapped
+    raise (import_string(cls) if isinstance(cls, str) else cls)()
+django_ratelimit.exceptions.Ratelimited
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Forbidden (Permission denied): /login/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 26, in _wrapped
+    raise (import_string(cls) if isinstance(cls, str) else cls)()
+django_ratelimit.exceptions.Ratelimited
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:16:41.296678+00:00
+AXES: New login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Created new record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:16:42.679604+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:16:43.794133+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+Forbidden: /login/
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:23:05.610738+00:00
+AXES: New login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Created new record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:23:06.735584+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:23:07.708798+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+Forbidden: /login/
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:29:34.824616+00:00
+AXES: New login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Created new record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:29:35.928642+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:29:36.978363+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+Forbidden: /login/
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 1 expired access attempts from database that were older than 2025-04-18 23:40:02.299114+00:00
+AXES: New login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Created new record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:40:04.038547+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:40:05.975401+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:40:10.269171+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:40:11.980631+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:40:13.749721+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:40:15.487701+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:40:17.254094+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:40:18.883127+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-18 23:40:20.471234+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 1 expired access attempts from database that were older than 2025-04-19 00:08:20.375184+00:00
+AXES: New login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Created new record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:08:21.981587+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:08:24.318936+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:08:28.953663+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:08:30.533155+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:08:32.367696+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:08:33.909172+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:08:35.592197+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:08:37.238094+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:08:38.821565+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:13:52.787617+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:13:55.270495+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:13:57.075176+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:13:58.856178+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:14:00.582564+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:14:02.508121+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:14:04.570954+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:14:06.370821+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:14:08.141159+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:14:09.915820+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:16:10.648559+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:16:13.094684+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:16:14.911738+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:16:16.426673+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:16:18.283679+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:16:20.840523+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:16:22.469946+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:16:24.165370+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:16:25.869881+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:16:27.736643+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9166
+"GET /signup/ HTTP/1.1" 200 10145
+"GET / HTTP/1.1" 200 9166
+"GET /signup/ HTTP/1.1" 200 10145
+"GET /signup/ HTTP/1.1" 200 10378
+"GET /signup/ HTTP/1.1" 200 10378
+"GET /signup/ HTTP/1.1" 200 10378
+"GET /signup/ HTTP/1.1" 200 11119
+"POST /signup/ HTTP/1.1" 200 11449
+"POST /signup/ HTTP/1.1" 200 11749
+"GET /activate/ODY/cohke9-397809cc03e48fc0f70cd126dfa46f7e/ HTTP/1.1" 302 0
+"GET /email-verification-success/ HTTP/1.1" 200 4350
+"GET /login/ HTTP/1.1" 200 9166
+"POST /resend-otp/ HTTP/1.1" 200 60
+AXES: Cleaned up 1 expired access attempts from database that were older than 2025-04-19 00:54:29.909124+00:00
+AXES: Successful login by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/login/"}.
+AXES: Reset 0 access attempts from database.
+AXES: Deleted 0 failed login attempts by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/login/"} from database.
+"POST /login/ HTTP/1.1" 302 0
+"GET /home/ HTTP/1.1" 200 5057
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:54:42.701050+00:00
+AXES: Successful logout by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/logout/"}.
+"POST /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 9374
+"POST /resend-otp/ HTTP/1.1" 200 60
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:55:57.851286+00:00
+AXES: Successful login by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/login/"}.
+AXES: Reset 0 access attempts from database.
+AXES: Deleted 0 failed login attempts by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/login/"} from database.
+"POST /login/ HTTP/1.1" 302 0
+"GET /home/ HTTP/1.1" 200 5057
+"GET /admin/ HTTP/1.1" 200 9865
+"GET /admin/auth/user/ HTTP/1.1" 200 13177
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/auth/user/ HTTP/1.1" 200 8280
+"POST /admin/auth/user/ HTTP/1.1" 302 0
+"GET /admin/auth/user/ HTTP/1.1" 200 12832
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET / HTTP/1.1" 302 0
+"GET /home/ HTTP/1.1" 200 4866
+"GET /admin/auth/user/ HTTP/1.1" 200 12698
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET / HTTP/1.1" 302 0
+"GET /home/ HTTP/1.1" 200 4866
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 00:57:52.003359+00:00
+AXES: Successful logout by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", path_info: "/logout/"}.
+"POST /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 9374
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:03:51.523980+00:00
+AXES: New login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Created new record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:03:51.524977+00:00
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:03:51.525978+00:00
+AXES: New login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Created new record in the database.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:03:53.975783+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:03:54.171640+00:00
+AXES: New login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Created new record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:03:54.231277+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:03:58.284346+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:03:58.531623+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:03:58.739499+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:00.200752+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:00.464504+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:00.623181+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:01.952363+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:02.338439+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:03.713168+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:03.972939+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:04.112176+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:06.182713+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:06.334802+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:06.625350+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:07.822989+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:08.031764+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:09.609099+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:09.971078+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:10.059219+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:12.242212+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:12.493885+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:12.668747+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:14.015834+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-04-19 01:04:14.526116+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "<unknown>", path_info: "/login/"} after repeated login failures.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9166
+"GET /signup/ HTTP/1.1" 200 11119
+"POST /signup/ HTTP/1.1" 200 11749
+"GET /activate/ODc/cohl89-69d661699c82128399e587fe82397f80/ HTTP/1.1" 302 0
+"GET /email-verification-success/ HTTP/1.1" 200 4350
+"GET /login/ HTTP/1.1" 200 9166

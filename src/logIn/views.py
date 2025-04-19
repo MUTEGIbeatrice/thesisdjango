@@ -20,6 +20,7 @@ from django.urls import reverse_lazy, reverse
 from django.utils.crypto import constant_time_compare
 from axes.utils import reset
 from django_ratelimit.decorators import ratelimit
+from django_ratelimit.exceptions import Ratelimited
 from django.contrib.auth.signals import user_login_failed
 from .forms import SupportMessageForm
 from django.core.mail import send_mail #Sending alert mails
@@ -67,10 +68,21 @@ User = get_user_model()
 
 # logIn  REQUEST, AUTHENTICATION AND RESTRICTION TO AN ALREADY AUTHENTICATED USER
 # Uses CAPTCHAs to prevent bots.
-@ratelimit(key='ip', rate='10/m', method='POST', block=True)
+#Ratelimiting that combines username+IP limits to prevent distributed attacks
+def ratelimit_key_func(group, request):
+    username = request.POST.get('username', '')
+    ip = request.META.get('REMOTE_ADDR', '')
+    return f"{username}:{ip}"
+
+@ratelimit(key=ratelimit_key_func, rate='5/15m', method='POST', block=False)
 @unauthenticated_user
 def logIn(request):
+    from django_ratelimit.exceptions import Ratelimited
     if request.method == 'POST':
+        if getattr(request, 'limited', False):
+            messages.error(request, "Too many login attempts. Please try again later.")
+            return render(request, "logIn/lockout.html")
+
         username = request.POST.get('username')
         password = request.POST.get('password')
         otp = request.POST.get('otp')

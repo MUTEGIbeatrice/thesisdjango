@@ -184,6 +184,51 @@
     margin-top: 5px;
     display: block;
 }
+  /*  modal styles */
+  .modal {
+          display: none; /* Hidden by default */
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0,0,0,0.5);
+      }
+      .modal-content {
+          background-color: #fefefe;
+          margin: 10% auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 50%;
+          border-radius: 10px;
+          color: #333;
+          font-family: Arial, sans-serif;
+          animation-name: modalopen;
+          animation-duration: 0.5s;
+      }
+      @keyframes modalopen {
+          from {opacity: 0; transform: translateY(-50px);}
+          to {opacity: 1; transform: translateY(0);}
+      }
+      .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+          cursor: pointer;
+      }
+      .close:hover,
+      .close:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+      }
+      ul.password-rules {
+          list-style-type: disc;
+          margin-left: 20px;
+      }
 
     </style>
 </head>
@@ -259,6 +304,7 @@
                     {% endif %}
                 </div>
             </div>
+        
 
             <p>A verification link will be sent to your email address.</p>
             <button id="signup-button" type='submit' onclick="submitForm()">Sign Up</button>
@@ -269,6 +315,66 @@
             </a>
         </form>
     </div>
+
+   <!-- Password Strength Modal -->
+   <div id="passwordModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal-content" role="document">
+      <button class="close" id="modalClose" aria-label="Close password guidelines">&times;</button>
+      <h2 id="modalTitle">Password Strength Guidelines</h2>
+      <p id="modalDesc">To create a strong password, please ensure your password meets the following criteria:</p>
+      <ul class="password-rules">
+        <li>At least 8 characters long</li>
+        <li>Contains at least one uppercase letter (A-Z)</li>
+        <li>Contains at least one lowercase letter (a-z)</li>
+        <li>Contains at least one digit (0-9)</li>
+        <li>Contains at least one special character (~!@#$%^&*()_+:;'[])</li>
+        <li>Is not too similar to your personal information</li>
+        <li>Is not a common password</li>
+        <li>Is not entirely numeric</li>
+        <li>Is not one of your last 5 passwords</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var modal = document.getElementById("passwordModal");
+      var closeBtn = document.getElementById("modalClose");
+      var passwordInput = document.getElementById("password1");
+
+      if (passwordInput && modal && closeBtn) {
+        // Show modal when password input is focused
+        passwordInput.addEventListener("focus", function() {
+          modal.style.display = "block";
+          modal.setAttribute("aria-hidden", "false");
+        });
+
+        // Close modal when user clicks on close button
+        closeBtn.addEventListener("click", function() {
+          modal.style.display = "none";
+          modal.setAttribute("aria-hidden", "true");
+        });
+
+        // Close modal when user clicks outside the modal content
+        window.addEventListener("click", function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+            modal.setAttribute("aria-hidden", "true");
+          }
+        });
+
+        // Close modal on Escape key press
+        document.addEventListener("keydown", function(event) {
+          if (event.key === "Escape" && modal.style.display === "block") {
+            modal.style.display = "none";
+            modal.setAttribute("aria-hidden", "true");
+          }
+        });
+      } else {
+        console.error("Password modal elements not found.");
+      }
+    });
+  </script>
     
 </body>
 </html>
