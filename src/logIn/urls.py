@@ -42,4 +42,11 @@ urlpatterns = [
     path('email-verification-success/', TemplateView.as_view(template_name='logIn/email_verification_success.html'), name='email_verification_success'),
     path('admin/lockout-stats/', views.lockout_stats, name='lockout_stats'),
     path('dashboard/security-dashboard/', security_dashboard, name='security_dashboard'),
+
+    # URL for resetting password
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name="logIn/password_reset.html"), name="password_reset"),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="logIn/password_reset_sent.html"), name="password_reset_done"),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="logIn/password_reset_form.html"), name="password_reset_confirm"),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="logIn/password_reset_complete.html"), name="password_reset_complete"),
+
 ]

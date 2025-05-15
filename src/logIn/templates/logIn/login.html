@@ -135,6 +135,8 @@ form{
     width: 500px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
+    
+    
     transform: translate(-50%,-50%);
     top: 50%;
     left: 50%;
@@ -156,6 +158,7 @@ form h1{
     color: rgb(193, 195, 196);
     line-height: 52px;
     text-align: center;
+    margin-top: 2cm;
 }
 
 form h3{
@@ -262,7 +265,7 @@ button:hover {
     <form action="{% url 'login' %}" method="POST"> 
         {% csrf_token %}  <!-- csrf to secure the data-->
        
-        <h1><b>Log In Systems</b></h1></br>
+        <h1><b>Log In Systems</b></h1><br>
    
         <h3>User Login Here</h3>
         
@@ -294,6 +297,8 @@ button:hover {
         </div>
      
      <button type='submit'> Log In </button>
+     
+     <h4> Forgotten your password? <a href="{% url 'password_reset' %}">Reset Password</a></h4>
 
      <h4>Don't have an account? </h4> 
      <a href="{% url 'signup' %}">

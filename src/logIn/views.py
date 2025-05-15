@@ -204,23 +204,39 @@ def logIn(request):
     return render(request, "logIn/login.html")
 
 
-
+# To send lockout email to Admin once an account is locked
 def send_lockout_email(username):
-    from django.core.mail import send_mail
-    from django.conf import settings
     try:
         user = User.objects.get(username=username)
-        send_mail(
-            subject="Account Locked Due to Multiple Failed Login Attempts",
-            message=f"Dear {user.username if user else 'User Unknown'},\n\nYour account has been temporarily locked due to multiple failed login attempts. Please try again after some time or contact support if this wasn't you.",
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[user.email] if user else [settings.EMAIL_HOST_USER],
-            fail_silently=True,
-        )
-        logger.info(f"Lockout notification email sent to {user.email if user else 'admin'}")
-    except User.DoesNotExist:
-        logger.warning(f"Attempted to send lockout email to non-existent user {username}")
+        recipient = user.email
+        message = f"""
+        Dear {user.username},
 
+        Your account has been temporarily locked due to multiple failed login attempts.
+        Please try again after some time or contact support if this wasn't you.
+
+        Regards,
+        Security Team
+        """
+
+    except User.DoesNotExist:
+        recipient = settings.EMAIL_HOST_USER
+        message = f"""
+        Lockout attempt detected for non-existent user: {username}.
+        This could indicate a brute-force attack attempt.
+        """
+
+    send_mail(
+        subject="Account Locked Due to Multiple Failed Login Attempts",
+        message=message,
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[recipient],
+        fail_silently=True,
+    )
+    
+    logger.info(f"Lockout email sent regarding user: {username}")
+
+    
             # Login successful
         logger.info(f'User {username} logged in successfully')
         messages.success(request, 'Login Successful')

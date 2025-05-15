@@ -13304,3 +13304,791 @@ AXES: Cleaned up 0 expired access attempts from database that were older than 20
 AXES: Successful logout by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36", path_info: "/logout/"}.
 "POST /logout/ HTTP/1.1" 302 0
 "GET /login/ HTTP/1.1" 200 9374
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9166
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 7687
+Not Found: /resetpassword
+"GET /resetpassword HTTP/1.1" 404 7693
+"GET /reset_password HTTP/1.1" 301 0
+"GET /reset_password/ HTTP/1.1" 200 4055
+"POST /reset_password/ HTTP/1.1" 302 0
+"GET /reset_password_sent/ HTTP/1.1" 200 3625
+"GET /reset/ODg/cpu1uq-bb703b365529d239b2c0a4704d715bc4/ HTTP/1.1" 302 0
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 4517
+"POST /reset/ODg/set-password/ HTTP/1.1" 200 4641
+"POST /reset/ODg/set-password/ HTTP/1.1" 302 0
+"GET /reset_password_complete/ HTTP/1.1" 200 3454
+"GET /login/ HTTP/1.1" 200 9166
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+Not Found: /password_reset
+"GET /password_reset HTTP/1.1" 404 7696
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+Not Found: /password_reset
+"GET /password_reset HTTP/1.1" 404 7696
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+Not Found: /password_reset
+"GET /password_reset HTTP/1.1" 404 7696
+"GET /reset_password HTTP/1.1" 301 0
+Internal Server Error: /reset_password/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'password_reset' not found. 'password_reset' is not a valid view function or pattern name.
+"GET /reset_password/ HTTP/1.1" 500 131262
+"GET / HTTP/1.1" 200 9166
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 27, in _wrapped
+    return fn(request, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\decorators.py", line 13, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 204, in logIn
+    return render(request, "logIn/login.html")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'password_reset' not found. 'password_reset' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 144002
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 27, in _wrapped
+    return fn(request, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\decorators.py", line 13, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 204, in logIn
+    return render(request, "logIn/login.html")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'password_reset' not found. 'password_reset' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 144092
+Internal Server Error: /reset_password/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'password_reset' not found. 'password_reset' is not a valid view function or pattern name.
+"GET /reset_password/ HTTP/1.1" 500 131243
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 27, in _wrapped
+    return fn(request, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\decorators.py", line 13, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 204, in logIn
+    return render(request, "logIn/login.html")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'password_reset' not found. 'password_reset' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 143955
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 27, in _wrapped
+    return fn(request, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\decorators.py", line 13, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 204, in logIn
+    return render(request, "logIn/login.html")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'reset_password' not found. 'reset_password' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 144092
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9257
+"GET / HTTP/1.1" 200 9259
+"GET / HTTP/1.1" 200 9258
+Internal Server Error: /reset_password/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'password_reset' not found. 'password_reset' is not a valid view function or pattern name.
+"GET /reset_password/ HTTP/1.1" 500 131394
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 27, in _wrapped
+    return fn(request, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\decorators.py", line 13, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 204, in logIn
+    return render(request, "logIn/login.html")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'reset_password' not found. 'reset_password' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 143957
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 27, in _wrapped
+    return fn(request, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\decorators.py", line 13, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 204, in logIn
+    return render(request, "logIn/login.html")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'reset_password' not found. 'reset_password' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 143957
+"GET / HTTP/1.1" 200 9258
+"GET /reset_password/ HTTP/1.1" 200 5620
+"GET /home/ HTTP/1.1" 302 0
+"GET /login/?next=/home/ HTTP/1.1" 200 9258
+"GET /login/?next=/home/ HTTP/1.1" 200 9257
+"GET /login/?next=/home/ HTTP/1.1" 200 9257
+"GET /login/?next=/home/ HTTP/1.1" 200 9301
+"GET /login/?next=/home/ HTTP/1.1" 200 9284
+"GET /login/?next=/home/ HTTP/1.1" 200 9272
+"GET /login/?next=/home/ HTTP/1.1" 200 9245
+"GET /login/?next=/home/ HTTP/1.1" 200 9245
+"GET /login/?next=/home/ HTTP/1.1" 200 9228
+"GET /login/?next=/home/ HTTP/1.1" 200 9267
+"GET /login/?next=/home/ HTTP/1.1" 200 9267
+"GET /login/?next=/home/ HTTP/1.1" 200 9267
+"GET /login/?next=/home/ HTTP/1.1" 200 9267
+"GET /login/?next=/home/ HTTP/1.1" 200 9289
+"GET /login/?next=/home/ HTTP/1.1" 200 9288
+"GET /reset_password/ HTTP/1.1" 200 5620
+"GET /reset_password/ HTTP/1.1" 200 5641
+"GET /reset_password/ HTTP/1.1" 200 5643
+"GET /reset_password/ HTTP/1.1" 200 5671
+"GET /reset_password/ HTTP/1.1" 200 5699
+"GET /reset_password/ HTTP/1.1" 200 5699
+"GET /home/ HTTP/1.1" 302 0
+"GET /login/?next=/home/ HTTP/1.1" 200 9288
+"GET /reset_password/ HTTP/1.1" 200 5699
+"GET /reset_password/ HTTP/1.1" 200 5705
+"POST /reset_password/ HTTP/1.1" 302 0
+"GET /reset_password_sent/ HTTP/1.1" 200 5280
+"GET /reset_password_sent/ HTTP/1.1" 200 5296
+"GET /reset_password_sent/ HTTP/1.1" 200 5296
+"GET /reset/ODg/cpu5wp-cae6ff7b9a78baad3398ef324d5fb38e/ HTTP/1.1" 302 0
+Internal Server Error: /reset/ODg/set-password/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: logIn/password_reset_confirm.html
+"GET /reset/ODg/set-password/ HTTP/1.1" 500 98072
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\urls.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 9219
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 9298
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 9298
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 9305
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 9305
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 9298
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 9298
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 9492
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 9492
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 8444
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 8464
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 8466
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 8466
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 8498
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 8505
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 8464
+"POST /reset/ODg/set-password/ HTTP/1.1" 200 8484
+"GET /reset/ODg/cpu5wp-cae6ff7b9a78baad3398ef324d5fb38e/ HTTP/1.1" 302 0
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 8464
+"POST /reset/ODg/set-password/ HTTP/1.1" 302 0
+"GET /reset_password_complete/ HTTP/1.1" 200 5175
+"GET /login/ HTTP/1.1" 200 9288
+"GET /reset_password/ HTTP/1.1" 200 5705
+"GET /home/ HTTP/1.1" 302 0
+"GET /login/?next=/home/ HTTP/1.1" 200 9288
+"GET /signup/ HTTP/1.1" 200 11119
+"GET /signup/ HTTP/1.1" 200 10299
+"GET /signup/ HTTP/1.1" 200 10282
+"GET /login/ HTTP/1.1" 200 9288
+"GET /reset_password/ HTTP/1.1" 200 5705
+"POST /reset_password/ HTTP/1.1" 302 0
+"GET /reset_password_sent/ HTTP/1.1" 200 5284
+"GET /login/ HTTP/1.1" 200 9288
+"GET /reset/ODg/cpu959-a1efb5666f46504f572086de8cfb7614/ HTTP/1.1" 302 0
+"GET /reset/ODg/set-password/ HTTP/1.1" 200 8464
+"POST /reset/ODg/set-password/ HTTP/1.1" 200 8484
+"POST /reset/ODg/set-password/ HTTP/1.1" 200 8476
+"POST /reset/ODg/set-password/ HTTP/1.1" 200 8476
+"POST /reset/ODg/set-password/ HTTP/1.1" 200 8617
+"POST /reset/ODg/set-password/ HTTP/1.1" 200 8630
+"POST /reset/ODg/set-password/ HTTP/1.1" 200 8743
+"POST /reset/ODg/set-password/ HTTP/1.1" 200 8714
+"POST /reset/ODg/set-password/ HTTP/1.1" 302 0
+"GET /reset_password_complete/ HTTP/1.1" 200 5175
+"GET /login/ HTTP/1.1" 200 9288
+"GET /signup/ HTTP/1.1" 200 10299
+code 400, message Bad request version ('**\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93ÚÚ\x00\x00\x00')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('<Ü¼½b\x1aÇ2×§Le²¢THï\x01©üÝ¤')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version (']\x16,W\x04Ê?¼9q\x83\x83ch\x05\x02V&\x98\x84')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('\x00\x02\x01\x00\x00-\x00\x02\x01\x01\x003\x04ï\x04íúú\x00\x01\x00\x11ì\x04ÀÅì/\x9b5\\ô')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('\x84P\x98\x00')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06s')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('\x02h2\x08http/1.1\x00#\x00\x00ÿ\x01\x00\x01\x00\x00+\x00\x07\x06JJ\x03\x04\x03\x03\x00')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06À\x01\x00\x06¼\x03\x035Qî¹Q%)i½\x15kÂV\x9e\x83\x91@ôZ\x91ÉCY\x07ñÁîËj\x15¤')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('áp}\x9boÔ÷')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('Ó\x9a\x97\x88\x12ýX')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('Wº$ë±/)J\x89=\x81Æo7MÛa\x8dN')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+"GET /signup/ HTTP/1.1" 200 10299
+code 400, message Bad request version ('ªª\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06s\x8a\x8a\x00\x00\x00\x12\x00\x00\x00\x17\x00\x00\x00')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('`·¶(O°sPä¬\x16HÓ\x9cðZfa\x94\x1aÈ\x1aiØÓ!rK}¨\x00\x92')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version (':~"6N\x00\x86o¢ØU&Ú\x8cÔª')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request syntax ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03e\x83S\\«9¬HöÓ\x18ÑÙåd\x08ÝÅ8ç')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x07\x00\x01\x00\x06ü\x03\x03Xëý÷\x0eî\x8b\x18(-ú|\x19å¼û\x7fO\x97\x96\x8f@VÁ\x8ez!@\x00\x90)¯')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+"GET /signup/ HTTP/1.1" 200 10299
+"GET /login/ HTTP/1.1" 200 9288
+"POST /login/ HTTP/1.1" 200 9717
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-05-15 08:59:59.950807+00:00
+AXES: New login failure by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36", path_info: "/login/"}. Created new record in the database.
+"POST /login/ HTTP/1.1" 200 9501
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-05-15 09:00:32.223706+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36", path_info: "/login/"}. Updated existing record in the database.
+"POST /login/ HTTP/1.1" 200 9501
+AXES: User login failed, running database handler for failure.
+AXES: Cleaned up 0 expired access attempts from database that were older than 2025-05-15 09:00:56.733679+00:00
+AXES: Repeated login failure by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36", path_info: "/login/"}. Updated existing record in the database.
+AXES: Locking out {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36", path_info: "/login/"} after repeated login failures.
+Forbidden: /login/
+"POST /login/ HTTP/1.1" 403 4505
+"GET /login/ HTTP/1.1" 200 9288
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\AppData\Local\Programs\Python\Python311\Lib\site-packages\django_ratelimit\decorators.py", line 27, in _wrapped
+    return fn(request, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\decorators.py", line 13, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 105, in logIn
+    send_lockout_email(username)
+  File "C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py", line 234, in send_lockout_email
+    failed_attempts += 1
+    ^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'failed_attempts' where it is not associated with a value
+"POST /login/ HTTP/1.1" 500 100532
+"GET /login/ HTTP/1.1" 200 9518
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+AXES: Cleaned up 1 expired access attempts from database that were older than 2025-05-15 09:39:31.255555+00:00
+AXES: Successful login by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36", path_info: "/login/"}.
+AXES: Reset 0 access attempts from database.
+AXES: Deleted 0 failed login attempts by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36", path_info: "/login/"} from database.
+"POST /login/ HTTP/1.1" 302 0
+"GET /home/ HTTP/1.1" 200 5058
+"GET /dashboard/security-dashboard/ HTTP/1.1" 200 13963
+"GET /home/ HTTP/1.1" 200 4867
+"GET /admin/lockout-stats/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/lockout-stats/ HTTP/1.1" 302 0
+"GET /login/?next=/admin/lockout-stats/ HTTP/1.1" 302 0
+"GET /home/ HTTP/1.1" 200 4867
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
+C:\Users\biotronics\Desktop\Folders\Univ ESSEX\Thesis\Assignments\Project\src\logIn\views.py changed, reloading.
+AXES: BEGIN version 7.0.2, blocking by ip_address or username
+Watching for file changes with StatReloader
