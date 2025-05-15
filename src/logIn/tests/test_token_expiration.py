@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from datetime import timedelta
+from unittest.mock import patch
+import time
 from logIn.tokens import email_token_generator
 
 class TokenExpirationTestCase(TestCase):
@@ -24,26 +26,27 @@ class TokenExpirationTestCase(TestCase):
         is_valid_now = email_token_generator.check_token(user, token)
         print(f"Token valid immediately after generation? {is_valid_now}")
 
-        # Simulate waiting for expiration (e.g., simulate 25 hours later)
-        user.date_joined -= timedelta(hours=25)  # Simulate as if the user joined earlier
-        user.save()
-        
-        is_valid_after_25hrs = email_token_generator.check_token(user, token)
-        print(f"Token valid after 25 hours? {is_valid_after_25hrs}")
-        
-        is_valid_after_49hrs = email_token_generator.check_token(user, token)
-        print(f"Token valid after 49 hours? {is_valid_after_49hrs}")
+        # Patch _num_seconds method to simulate token age in seconds
+        original_num_seconds = email_token_generator._num_seconds
 
-        # Simulate waiting for expiration (e.g., simulate 73 hours later)
-        user.date_joined -= timedelta(hours=73)  # Simulate as if the user joined earlier
-        user.save()
-        
-        is_valid_after_73hrs = email_token_generator.check_token(user, token)
-        print(f"Token valid after 73 hours? {is_valid_after_73hrs}")
+        def fake_num_seconds_23(dt):
+            # Simulate 23 hours later
+            return original_num_seconds(dt) + 23 * 3600
 
-      # Simulate waiting for expiration (e.g., simulate 97 hours later)
-        user.date_joined -= timedelta(hours=97)  # Simulate as if the user joined earlier
-        user.save()
-        
-        is_valid_after_97hrs = email_token_generator.check_token(user, token)
-        print(f"Token valid after 97 hours? {is_valid_after_97hrs}")
+        with patch.object(email_token_generator, '_num_seconds', side_effect=fake_num_seconds_23):
+            is_valid_after_23hrs = email_token_generator.check_token(user, token)
+            print(f"Token valid after 23 hours? {is_valid_after_23hrs}")
+
+        def fake_num_seconds_25(dt):
+            return original_num_seconds(dt) + 25 * 3600
+
+        with patch.object(email_token_generator, '_num_seconds', side_effect=fake_num_seconds_25):
+            is_valid_after_25hrs = email_token_generator.check_token(user, token)
+            print(f"Token valid after 25 hours? {is_valid_after_25hrs}")
+
+        def fake_num_seconds_49(dt):
+            return original_num_seconds(dt) + 49 * 3600
+
+        with patch.object(email_token_generator, '_num_seconds', side_effect=fake_num_seconds_49):
+            is_valid_after_49hrs = email_token_generator.check_token(user, token)
+            print(f"Token valid after 49 hours? {is_valid_after_49hrs}")

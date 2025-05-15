@@ -322,4 +322,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Set email verification token expiration to 24 hours (86400 seconds)
+PASSWORD_RESET_TIMEOUT = 86400
+
 

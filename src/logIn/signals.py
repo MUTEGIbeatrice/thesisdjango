@@ -9,10 +9,8 @@ from django.core.mail import send_mail
 from axes.signals import user_locked_out
 
 
-
 # Initialize logger
 logger = logging.getLogger(__name__)
-
 
 
 # Signal receiver to automatically create UserProfile when a new User is created.    

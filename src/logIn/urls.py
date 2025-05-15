@@ -16,8 +16,6 @@ from .views import custom_password_change, CustomPasswordChangeView
 from .views import contact_support
 
 
-
-
 urlpatterns = [
     #URL for Login, Logout, Home, Signup pages
     path('',views.logIn, name="login"), 
@@ -44,6 +42,4 @@ urlpatterns = [
     path('email-verification-success/', TemplateView.as_view(template_name='logIn/email_verification_success.html'), name='email_verification_success'),
     path('admin/lockout-stats/', views.lockout_stats, name='lockout_stats'),
     path('dashboard/security-dashboard/', security_dashboard, name='security_dashboard'),
-
-
 ]
