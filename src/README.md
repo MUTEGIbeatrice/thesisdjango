@@ -7,6 +7,7 @@ Steps:
 a). First run pip install -r requirements.txt so as to install all the required dependencies that was used throughout the app development time.
 
 b). Then use this command to run the DjangoApp in:
+
 	http:   python manage.py runserver
 	
 	https: python manage.py runserver_plus --cert-file cert.pem
