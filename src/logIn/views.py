@@ -204,7 +204,7 @@ def logIn(request):
     return render(request, "logIn/login.html")
 
 
-# To send lockout email to Admin once an account is locked
+# To send lockout email to user once another login is attempted after account is locked
 def send_lockout_email(username):
     try:
         user = User.objects.get(username=username)
@@ -235,28 +235,6 @@ def send_lockout_email(username):
     )
     
     logger.info(f"Lockout email sent regarding user: {username}")
-
-    
-            # Login successful
-        logger.info(f'User {username} logged in successfully')
-        messages.success(request, 'Login Successful')
-        login(request, user)
-        cache.delete(f'failed_attempts_{username}')
-        cache.delete(f'failed_attempts_ip_{ip}')
-        request.session.set_expiry(settings.SESSION_COOKIE_AGE)
-        return redirect('home')
-
-    else:
-        failed_attempts += 1
-        failed_attempts_ip += 1
-        cache.set(f'failed_attempts_{username}', failed_attempts, timeout=600)
-        cache.set(f'failed_attempts_ip_{ip}', failed_attempts_ip, timeout=600)
-        logger.warning(f'Failed login attempt for user {username} from IP {ip}')
-        messages.error(request, "Invalid Credentials. Please try again.")
-        return render(request, "logIn/login.html")
-
-    return render(request, "logIn/login.html")
-
 
 
 # Resend OTP
