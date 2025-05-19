@@ -10,9 +10,9 @@ b). Then use this command to run the DjangoApp in:
 
 	http:   python manage.py runserver
 	
-	https: python manage.py runserver_plus --cert-file cert.pem
+	https: python manage.py runserver_plus --cert-file cert.pem --key-file key.pem
 
-
+c). Then create an account on the signup page.
 
 
 Credentials of users in the Django logIn System
