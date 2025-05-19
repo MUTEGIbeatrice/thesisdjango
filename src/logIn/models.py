@@ -30,11 +30,13 @@ class UserProfile(models.Model):
     - otp: One-time password for 2FA
     - otp_expiry: When the OTP expires  
     - last_password_change: Track password changes
+    - current_session_key: Store the active session key for concurrent session prevention
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     otp_secret = models.CharField(max_length=32, blank=True, null=True)  # Store OTP secret
     otp = models.CharField(max_length=6, blank=True, null=True)  # Temporary storage for OTP
     otp_expiry = models.DateTimeField(null=True, blank=True)
+    current_session_key = models.CharField(max_length=40, blank=True, null=True)  # New field for session key
 
     def is_otp_valid(self):
         if not self.otp or not self.otp_expiry:

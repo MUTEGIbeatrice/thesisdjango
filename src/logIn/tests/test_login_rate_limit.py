@@ -26,7 +26,7 @@ class LoginRateLimitTest(TestCase):
         self.password = 'testpassword'
 
     @patch('logIn.views.verify_recaptcha', return_value=True)
-    @patch('logIn.views.ratelimit', side_effect=fake_ratelimit_decorator)
+    @patch('django_ratelimit.decorators.ratelimit', side_effect=fake_ratelimit_decorator)
     def test_login_rate_limit(self, mock_ratelimit, mock_verify_recaptcha):
         # Clear cache before test
         cache.clear()
@@ -39,11 +39,11 @@ class LoginRateLimitTest(TestCase):
 
         # Send 5 POST requests within rate limit
         for _ in range(5):
-            response = self.client.post(self.login_url, post_data)
+            response = self.client.post(self.login_url, post_data, REMOTE_ADDR='127.0.0.1')
             # We expect normal response (not blocked)
             self.assertNotContains(response, "Too many login attempts", status_code=200)
 
         # 6th request should be blocked by rate limit
-        response = self.client.post(self.login_url, post_data)
-        self.assertEqual(response.status_code, 200)
+        response = self.client.post(self.login_url, post_data, REMOTE_ADDR='127.0.0.1')
+        self.assertEqual(response.status_code, 403)
         self.assertIn("Too many login attempts", response.content.decode())

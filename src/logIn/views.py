@@ -50,6 +50,7 @@ from .models import LockoutLog
 from django.db.models import Count
 import http.client
 import json
+import user_agents
 
 
 
@@ -77,7 +78,6 @@ def ratelimit_key_func(group, request):
 @ratelimit(key=ratelimit_key_func, rate='5/15m', method='POST', block=False)
 @unauthenticated_user
 def logIn(request):
-    from django_ratelimit.exceptions import Ratelimited
     if request.method == 'POST':
         if getattr(request, 'limited', False):
             messages.error(request, "Too many login attempts. Please try again later.")
@@ -90,6 +90,24 @@ def logIn(request):
 
         # Validate reCAPTCHA
         if not verify_recaptcha(request, recaptcha_response):
+            # Log failed CAPTCHA attempt
+            ip_address = request.META.get('REMOTE_ADDR')
+            username = request.POST.get('username', '')
+            user_agent = request.META.get('HTTP_USER_AGENT', '')
+            import user_agents
+            ua = user_agents.parse(user_agent)
+            os_info = f"{ua.os.family} {ua.os.version_string}"
+            device_type = 'Mobile' if ua.is_mobile else 'Tablet' if ua.is_tablet else 'PC' if ua.is_pc else 'Other'
+
+            LockoutLog.objects.create(
+                username=username,
+                ip_address=ip_address,
+                user_agent=user_agent,
+                os_info=os_info,
+                device_type=device_type,
+                is_simulation=False
+            )
+
             messages.error(request, "Please complete the CAPTCHA to proceed.")
             return render(request, "logIn/login.html")
 
@@ -107,12 +125,10 @@ def logIn(request):
             # Log lockout with user agent, os info, device type
             ip_address = request.META.get('REMOTE_ADDR')
             user_agent = request.META.get('HTTP_USER_AGENT', '')
-            import user_agents
             ua = user_agents.parse(user_agent)
             os_info = f"{ua.os.family} {ua.os.version_string}"
             device_type = 'Mobile' if ua.is_mobile else 'Tablet' if ua.is_tablet else 'PC' if ua.is_pc else 'Other'
 
-            from .models import LockoutLog
             LockoutLog.objects.create(
                 username=username,
                 ip_address=ip_address,
@@ -144,7 +160,7 @@ def logIn(request):
                 return render(request, "logIn/login.html")
 
             # OTP Verification
-            if hasattr(user, 'userprofile') and user.userprofile.otp:
+            if hasattr(user, 'userprofile') and user.userprofile.otp_secret:
                 if not user.userprofile.is_otp_valid():
                     # OTP expired, clear and prompt for new OTP
                     user.userprofile.otp = None
@@ -153,7 +169,6 @@ def logIn(request):
                     return render(request, "logIn/login.html")
 
                 if not otp:  # No OTP entered yet; generate and send one
-                    from django.utils import timezone
                     otp_code = generate_otp_secret(user)
                     send_otp(user.email, otp_code)
 
@@ -174,14 +189,16 @@ def logIn(request):
 
                 if otp != user.userprofile.otp:  # Entered OTP does not match
                     failed_attempts += 1
+                    cache.set(f'failed_attempts_{username}', failed_attempts, timeout=900)
 
                     if failed_attempts >= 3:  # Lock account after multiple failed attempts
                         user.userprofile.otp = None  # Reset stored OTP
                         user.userprofile.save()
-                        cache.set(f'failed_attempts_{username}', failed_attempts, timeout=900)  # Lock for 15 minutes
-
-                        messages.error(request, "Invalid OTP. Please request a new one.")
-                        return render(request, "logIn/login.html", {"username": username, "resend": True})
+                        messages.error(request, "Too many incorrect OTP attempts. Please try again later.")
+                        return render(request, "logIn/login.html", {"username": username})
+                        
+                    messages.error(request, "Invalid OTP. Please request a new one and try again.")
+                    return render(request, "logIn/login.html", {"username": username, "resend": True})
 
             # Login successful
             logger.info(f'User {username} logged in successfully')
@@ -190,6 +207,18 @@ def logIn(request):
             cache.delete(f'failed_attempts_{username}')
             cache.delete(f'failed_attempts_ip_{ip}')
             request.session.set_expiry(settings.SESSION_COOKIE_AGE)
+
+            # Ensure session is saved to have a session_key
+            request.session.save()
+
+            # Update current session key in UserProfile for concurrent session prevention
+            try:
+                user_profile = user.userprofile
+                user_profile.current_session_key = request.session.session_key
+                user_profile.save()
+            except Exception as e:
+                logger.error(f"Failed to update session key for user {username}: {str(e)}")
+
             return redirect('home')
 
         else:
@@ -235,6 +264,7 @@ def send_lockout_email(username):
     )
     
     logger.info(f"Lockout email sent regarding user: {username}")
+
 
 
 # Resend OTP
@@ -543,9 +573,10 @@ def lockOut(request):
 #@staff_member_required  #To be accessible by admin staff members
 @login_required
 def lockout_stats(request):
-    if not request.user.is_staff:
-        messages.error(request, "You do not have permission to access the lockout statistics.")
-        return redirect('home')
+    # Removed staff check to allow any logged-in user to access lockout stats
+    # if not request.user.is_staff:
+    #     messages.error(request, "You do not have permission to access the lockout statistics.")
+    #     return redirect('home')
 
     # Get top 10 most locked out users
     top_locked_users = LockoutLog.objects.values('username').annotate(
@@ -569,7 +600,9 @@ def lockout_stats(request):
         ip_address = record.get('ip_address')
         user_agent = record.get('user_agent') or 'Unknown'
         timestamp = record.get('timestamp')
-        is_simulation = record.get('is_simulation', False)  # Check if it's a simulation
+        # Removed filtering of simulation logs to include all logs
+        # is_simulation = record.get('is_simulation', False)  # Check if it's a simulation
+        is_simulation = record.get('is_simulation', False)
 
         if timestamp and timezone.is_naive(timestamp):
             timestamp = timezone.make_aware(timestamp, timezone.get_current_timezone())

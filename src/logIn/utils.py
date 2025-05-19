@@ -69,12 +69,18 @@ def custom_lockout_callable(request, credentials):
 
 
 # Generate OTP secret for the user
+import pyotp
+
 def generate_otp_secret(user):
     # Generate a secure random OTP
     otp = str(random.randint(100000, 999999))  # 6-digit OTP
     
     # Get or create user profile
     user_profile, created = UserProfile.objects.get_or_create(user=user)
+    
+    # Generate and set otp_secret if not already set
+    if not user_profile.otp_secret:
+        user_profile.otp_secret = pyotp.random_base32()
     
     # Set OTP and expiry (10 minutes from now)
     user_profile.otp = otp

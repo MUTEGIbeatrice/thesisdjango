@@ -1,8 +1,12 @@
 from django.utils.deprecation import MiddlewareMixin
 from django.http import HttpResponseForbidden
-from .models import LockoutLog
+from django.contrib.auth import logout
+from .models import LockoutLog, UserProfile
 from ipware import get_client_ip
-import user_agents
+import user_agents, logging
+from django.utils.timezone import now
+
+
 
 class LockoutLoggingMiddleware(MiddlewareMixin):
     def process_request(self, request):
@@ -27,4 +31,35 @@ class LockoutLoggingMiddleware(MiddlewareMixin):
                 is_simulation=False
             )
             return HttpResponseForbidden("You are locked out due to multiple failed login attempts.")
+        return None
+
+
+#Concurrent session 
+class ConcurrentSessionMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        # Skip concurrent session check for login URL to avoid blocking login POST requests
+        if request.path.startswith('/login'):
+            return None
+
+        user = request.user
+        if user.is_authenticated:
+            session_key = request.session.session_key
+            if not session_key:
+                # Session key not set yet, skip check
+                return None
+            try:
+                user_profile = UserProfile.objects.get(user=user)
+            except UserProfile.DoesNotExist:
+                return None
+
+            # If session key differs from stored one, logout user to invalidate old sessions
+            if user_profile.current_session_key != session_key:
+                from django.contrib.auth import logout
+                logout(request)
+                from django.shortcuts import redirect
+                return redirect('login')
+
+            # Update last activity timestamp in session
+            request.session['last_activity'] = now().timestamp()
+
         return None
